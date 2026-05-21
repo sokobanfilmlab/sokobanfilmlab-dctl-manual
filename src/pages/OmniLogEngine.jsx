@@ -533,7 +533,7 @@ export default function App() {
             {[
               { num:"01", title:"INITIAL PLACEMENT",    zh_title:"核心節點建置",       color:C.orange,
                 en:<>Position the <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.orange}}>DCTL</strong> from the <strong style={{color:C.orange}}>Open FX</strong> library to serve as your primary normalization stage, ensuring it processes pure, original Log data.</>,
-                zh:<>將 <strong style={{color:C.textHi}}>Sokoban FilmLab OmniLogEngine DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.orange}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
+                zh:<>將 <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> <strong style={{color:C.orange}}>DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.orange}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
               { num:"02", title:"PRIMARY BALANCING",    zh_title:"基礎色彩校正平衡",   color:C.green,
                 en:<>Prioritize using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Contrast, Saturation,</strong> and <strong style={{color:C.green}}>Shadows / Midtones / Highlights</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
                 zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、對比、飽和度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
