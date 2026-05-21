@@ -589,6 +589,28 @@ export default function App() {
             </Card>
           </section>
 
+          {/* Vimeo Showcase */}
+          <section style={{ marginBottom:56 }}>
+            <span style={{ display:"inline-block", border:"1px solid #2a2a2a", color:"#555",
+              fontSize:10, fontFamily:"'DM Mono',monospace", letterSpacing:"0.13em",
+              padding:"2px 8px", borderRadius:3, marginBottom:11 }}>SHOWCASE</span>
+            <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:"clamp(22px,3.5vw,38px)",
+              fontWeight:800, color:"#00B2A9", textTransform:"uppercase", letterSpacing:"0.03em",
+              lineHeight:1.05, marginBottom:4 }}>Before / After Showcase</div>
+            <div style={{ fontFamily:"'DM Sans','Noto Sans TC',sans-serif", fontSize:15,
+              color:"#DEDEDE", marginBottom:22 }}>實戰展示</div>
+            <div style={{ position:"relative", paddingBottom:"56.25%", height:0,
+              borderRadius:8, overflow:"hidden", border:"1px solid #1e1e1e", background:"#0d0d0d" }}>
+              <iframe
+                src="https://vimeo.com/album/12130158/embed"
+                style={{ position:"absolute", top:0, left:0, width:"100%", height:"100%", border:"none" }}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="SokobanFilmLab Omni Log Engine Showcase"
+              />
+            </div>
+          </section>
+
           {/* Footer */}
           <footer style={{ borderTop:"1px solid #1e1e1e", paddingTop:28 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#333" }}>
