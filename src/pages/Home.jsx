@@ -68,7 +68,7 @@ export default function Home() {
             fontSize: 'clamp(36px,6vw,60px)', fontWeight: 800,
             color: C.textHi, textTransform: 'uppercase',
             letterSpacing: '0.02em', lineHeight: 1.0, marginBottom: 6,
-          }}>SokobanFilmLab</h1>
+          }}>Sokoban Film Lab</h1>
           <div style={{
             fontFamily: "'Barlow Condensed',sans-serif",
             fontSize: 'clamp(16px,2.5vw,22px)', fontWeight: 300,
@@ -142,7 +142,7 @@ export default function Home() {
                   color: '#00B2A9', letterSpacing: '0.1em',
                   display: 'flex', alignItems: 'center', gap: 6,
                 }}>
-                  View Manual <span>→</span>
+                  View Manual <span>→→</span>
                 </div>
               </div>
             </div>
