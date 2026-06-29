@@ -60,6 +60,9 @@ const PARAMS = [
   { icon:"◆", label:"TEMPERATURE", zh:"色溫",     tag:"v2.0 UPGRADED", tagC:C.cyan,   accentL:C.cyan,
     en:"Optical-style white balance. Shifts the warm/cool vibe precisely while keeping the colors clean and mud-free.",
     zh_desc:"模擬光學濾鏡的色溫調整。控制畫面的冷暖氣圍，並維持色彩的純淨度。", range:"2000K → 10000K" },
+  { icon:"◇", label:"TINT",        zh:"色調",     tag:"v2.1 NEW",      tagC:C.cyan,   accentL:C.cyan,
+    en:"Optical-style magenta/green axis correction. Cancels the green/magenta shift common to fluorescent and LED sources.",
+    zh_desc:"模擬光學色片的洋紅-綠軸校正。化解日光燈、LED 等混光現場常見的綠/洋紅偏移。", range:"Magenta ↔ Green" },
   { icon:"◑", label:"CONTRAST",    zh:"對比",     tag:null, accentL:C.purple,
     en:"Log-native power curve for non-destructive depth control.",
     zh_desc:"Log 原生冪函數曲線，提供平滑的影像深度調整。", range:"−100 → +100" },
@@ -247,11 +250,11 @@ export default function App() {
             </button>
           ))}
           <div style={{ margin:"28px 14px 0", borderTop:"1px solid #1e1e1e", paddingTop:20 }}>
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:9, color:"#3a3a3a",
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, color:"#666",
               letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Version</div>
-            {["Pro Suite","+ Light Engine","May 2026"].map((t,i) => (
-              <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:11,
-                color:i===2?"#4a3a1a":"#3a3a3a", lineHeight:1.9 }}>{t}</div>
+            {["Pro Suite","+ Light Engine","June 2026"].map((t,i) => (
+              <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:12,
+                color:i===2?"#B07A35":"#888", lineHeight:1.9 }}>{t}</div>
             ))}
           </div>
         </aside>
@@ -614,7 +617,7 @@ export default function App() {
           {/* Footer */}
           <footer style={{ borderTop:"1px solid #1e1e1e", paddingTop:28 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#333" }}>
-              User Manual · May 2026</div>
+              User Manual · June 2026</div>
           </footer>
 
         </main>
