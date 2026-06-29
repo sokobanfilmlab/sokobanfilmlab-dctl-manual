@@ -235,16 +235,16 @@ export default function App() {
         <aside className="sbar" style={{ width:200, flexShrink:0, position:"sticky", top:60,
           height:"calc(100vh - 60px)", overflowY:"auto", padding:"28px 12px",
           borderRight:"1px solid #1e1e1e" }}>
-          <div style={{ fontFamily:"'DM Mono',monospace", fontSize:9, color:"#444",
+          <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, color:"#666",
             letterSpacing:"0.18em", textTransform:"uppercase", padding:"0 14px 14px" }}>Navigation</div>
           {NAV.map(n => (
             <button key={n.id} className={`nbtn${active===n.id?" act":""}`} onClick={()=>go(n.id)}>
-              <div style={{ width:2, height:26, borderRadius:2,
+              <div style={{ width:2, height:30, borderRadius:2,
                 background:active===n.id?C.orange:"transparent", flexShrink:0, transition:"background 0.2s" }} />
               <div>
-                <div style={{ fontFamily:"'DM Mono',monospace", fontSize:12,
-                  color:active===n.id?C.orange:"#888", fontWeight:500 }}>{n.label}</div>
-                <div style={{ fontSize:11, color:active===n.id?C.textMed:"#484848",
+                <div style={{ fontFamily:"'DM Mono',monospace", fontSize:13,
+                  color:active===n.id?C.orange:"#aaa", fontWeight:500 }}>{n.label}</div>
+                <div style={{ fontSize:12, color:active===n.id?C.textMed:"#888",
                   fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>{n.zh}</div>
               </div>
             </button>
