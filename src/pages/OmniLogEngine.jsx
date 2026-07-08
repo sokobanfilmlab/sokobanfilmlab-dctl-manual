@@ -385,6 +385,13 @@ export default function App() {
                 為了在使用本引擎的高精度運算時確保完美的即時播放，強烈建議開啟<strong style={{color:C.orange}}>快取功能</strong>。
                 首次套用引擎時，顯卡 GPU 可能需要 <strong style={{color:C.textHi}}>1 到 3 秒進行著色器編譯</strong>。
               </p>
+              <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:8 }}>
+                Opening a project that uses the engine requires recompiling the shader —
+                <strong style={{color:C.textHi}}> a longer initial load is expected behaviour, not a stall.</strong>
+              </p>
+              <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:14, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>
+                開啟含有本引擎的專案時，系統需重新編譯著色器，<strong style={{color:C.textHi}}>載入時間較長屬正常現象，並非當機</strong>。
+              </p>
               <CodeBox>
                 <span style={{color:C.muted}}>Menu → </span>
                 <span style={{color:C.orange, fontWeight:600}}>Playback</span>
