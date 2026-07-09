@@ -44,13 +44,13 @@ const LOOKS = [
     zh_desc:"專為極端光比場景設計，最大化感光元件的極限動態範圍。在保留暗部細節的同時，確保極高光區域呈現如底片般柔和的過渡滾降。" },
   { name:"BALANCE",      zh:"平衡",        dot:C.green,  accentLeft:C.green,
     en:'Delivers uniform colour reproduction and a balanced contrast curve. When a project prioritises "realism," this mode provides the perfect neutral starting point for your grade.',
-    zh_desc:"提供均勻的色彩還原與反差曲線。當專案首重「真實感」時，此模式能提供最中性的絕佳調色起點。" },
+    zh_desc:"提供均勻的色彩還原與反差曲線。當專案首重「真實感」時，此模式能提供最中性的調色起點。" },
   { name:"STANDARD",     zh:"標準",        dot:C.cyan,   accentLeft:C.cyan,
     en:"Universally adaptable to Log footage from almost any camera system. Simulates a standard filmic S-curve, instantly building volume, depth, and rich midtone details within the image.",
-    zh_desc:"幾乎能適應所有攝影機型拍出的 Log 畫面。模擬標準的底片感 S 曲線，為畫面建立絕佳的立體感與深度，豐富的中階層次。" },
+    zh_desc:"幾乎能適應所有攝影機型拍出的 Log 畫面。模擬標準的底片感 S 曲線，為畫面建立立體感與深度，豐富的中階層次。" },
   { name:"HIGH CONTRAST", zh:"高反差",     dot:C.purple, accentLeft:C.purple,
     en:"Delivers intense yet controlled visual impact. Further pushes down the black levels for deep, rich shadows while significantly expanding highlight separation — colour harmony maintained throughout.",
-    zh_desc:"強烈卻不失控的視覺張力。進一步下壓黑位以產生極度濃郁的暗部，同時大幅拉開亮部層次，即使反差極大依然完美鎖住色彩和諧度。" },
+    zh_desc:"強烈卻不失控的視覺張力。進一步下壓黑位以產生深邃濃郁的暗部，同時大幅拉開亮部層次，即使反差極大依然穩定鎖住色彩和諧度。" },
 ];
 
 const PARAMS = [
@@ -92,22 +92,22 @@ function PartTag({ children }) {
 function SectionHeading({ en, zh }) {
   return (
     <div style={{ marginBottom:32 }}>
-      <h2 style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:"clamp(28px,4.5vw,42px)",
-        fontWeight:800, color:C.teal, textTransform:"uppercase", letterSpacing:"0.03em", lineHeight:1.05, margin:0 }}>
+      <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(28px,4.5vw,42px)",
+        fontWeight:900, color:C.teal, textTransform:"uppercase", letterSpacing:"0.03em", lineHeight:1.05, margin:0 }}>
         {en}
       </h2>
-      <div style={{ fontFamily:"'DM Sans','Noto Sans TC',sans-serif", fontSize:17, color:C.textZh, marginTop:6 }}>{zh}</div>
+      <div style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:17, color:C.textZh, marginTop:6 }}>{zh}</div>
     </div>
   );
 }
 function SubLabel({ en, zh }) {
   return (
-    <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:16, fontWeight:700,
+    <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:16, fontWeight:700,
       color:C.textHi, textTransform:"uppercase", letterSpacing:"0.1em",
       borderBottom:"1px solid #2a2a2a", paddingBottom:8, marginBottom:20,
       display:"flex", gap:14, alignItems:"baseline" }}>
       <span>{en}</span>
-      {zh && <span style={{ fontFamily:"'DM Sans','Noto Sans TC',sans-serif", fontWeight:400, fontSize:14,
+      {zh && <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontWeight:400, fontSize:14,
         color:C.textZh, letterSpacing:0, textTransform:"none" }}>{zh}</span>}
     </div>
   );
@@ -136,7 +136,7 @@ function StepRow({ num, en, zh, accentColor }) {
       <StepCircle n={num} color={accentColor||C.orange} />
       <div>
         <div style={{ fontSize:16, color:C.textMed, lineHeight:1.65 }}>{en}</div>
-        <div style={{ fontSize:15, color:C.textZh, marginTop:5, fontFamily:"'DM Sans','Noto Sans TC',sans-serif", lineHeight:1.65 }}>{zh}</div>
+        <div style={{ fontSize:15, color:C.textZh, marginTop:5, fontFamily:"'Rubik','Noto Sans TC',sans-serif", lineHeight:1.65 }}>{zh}</div>
       </div>
     </div>
   );
@@ -187,18 +187,18 @@ export default function App() {
   const go = id => { document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }); setMob(false); };
 
   return (
-    <div style={{ background:C.bg, minHeight:"100vh", color:C.textMed, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>
+    <div style={{ background:C.bg, minHeight:"100vh", color:C.textMed, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap');
         *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
         html { scroll-behavior:smooth; }
-        /* Force Latin characters inside zh elements to use DM Sans */
+        /* Force Latin characters inside zh elements to use Rubik */
         [lang="zh"], .zh-text, p[class*="zh"], div[class*="zh"] {
-          font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+          font-family: 'Rubik', 'Noto Sans TC', sans-serif;
         }
-        /* Global: any element using Noto Sans TC still renders Latin via DM Sans */
+        /* Global: any element using Noto Sans TC still renders Latin via Rubik */
         * { font-family: inherit; }
-        body { font-family: 'DM Sans', 'Noto Sans TC', sans-serif; }
+        body { font-family: 'Rubik', 'Noto Sans TC', sans-serif; }
         html { scroll-behavior:smooth; }
         ::-webkit-scrollbar { width:5px; }
         ::-webkit-scrollbar-track { background:#000; }
@@ -245,7 +245,7 @@ export default function App() {
                 <div style={{ fontFamily:"'DM Mono',monospace", fontSize:13,
                   color:active===n.id?C.orange:"#aaa", fontWeight:500 }}>{n.label}</div>
                 <div style={{ fontSize:12, color:active===n.id?C.textMed:"#888",
-                  fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>{n.zh}</div>
+                  fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{n.zh}</div>
               </div>
             </button>
           ))}
@@ -273,12 +273,12 @@ export default function App() {
                 Professional Log Normalization for Creative Workflows
                 <span style={{ display:"inline-block", width:24, height:1, background:C.orange }} />
               </div>
-              <h1 style={{ fontFamily:"'Barlow Condensed',sans-serif",
-                fontSize:"clamp(36px,7vw,68px)", fontWeight:800, color:C.textHi,
+              <h1 style={{ fontFamily:"'Rubik',sans-serif",
+                fontSize:"clamp(36px,7vw,68px)", fontWeight:900, color:C.textHi,
                 textTransform:"uppercase", letterSpacing:"0.02em", lineHeight:1.0, marginBottom:6 }}>
                 Omni Log Engine
               </h1>
-              <div style={{ fontFamily:"'Barlow Condensed',sans-serif",
+              <div style={{ fontFamily:"'Rubik',sans-serif",
                 fontSize:"clamp(14px,2vw,18px)", fontWeight:400, color:C.orange,
                 textTransform:"uppercase", letterSpacing:"0.3em", marginBottom:28 }}>
                 SokobanFilmLab
@@ -288,15 +288,15 @@ export default function App() {
                 high-precision transformation tool utilising advanced floating-point math.
               </p>
               <p style={{ fontSize:17, color:C.textMed, lineHeight:1.75, maxWidth:640, margin:"0 auto 12px" }}>
-                It ensures your sensor's dynamic range remains perfectly intact, creating a solid core for colour grading
+                It ensures your sensor's dynamic range remains intact, creating a solid core for colour grading
                 with natural, balanced tonal rolloffs. The result is a highly adaptable, cinematic canvas that gives you
                 the freedom to bring your creative inspirations to life.
               </p>
               <p style={{ fontSize:15, color:C.textZh, lineHeight:1.85, maxWidth:600, margin:"0 auto",
-                fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>
+                fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
                 <strong style={{color:C.orange}}>SokobanFilmLab Omni Log Engine</strong> 不僅僅是一個 LUT，它是一組高精度的色彩轉換引擎，
-                採用浮點運算數學映射，確保攝影機動態範圍完美保留，建立堅實的調光核心基礎，
-                呈現自然平衡的光度色調層次，提供一個極致靈活的專業電影級畫布。
+                採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎，
+                呈現自然平衡的光度色調層次，提供一個高度靈活的專業電影級畫布。
               </p>
             </div>
 
@@ -304,7 +304,7 @@ export default function App() {
               {[
                 { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", hi:true,
                   en:<><strong style={{color:C.textHi}}>Includes BOTH Pro &amp; Light:</strong> The complete Offline/Online workflow arsenal. The Pro high-precision engine is engineered for maximum colour fidelity. Recommended for high-end workstations or tasks requiring stringent precision in image detail.</>,
-                  zh:"包含 Pro 與 Light 雙引擎：完整的 Offline / Online 工作流程工具庫。Pro 高精度引擎專為極致色彩保真度設計，推薦於高階工作站環境使用。" },
+                  zh:"包含 Pro 與 Light 雙引擎：完整的 Offline / Online 工作流程工具庫。Pro 高精度引擎專為最大色彩保真度設計，推薦於高階工作站環境使用。" },
                 { name:"OMNI LOG ENGINE -LIGHT-", badge:"Real-time", hi:false,
                   en:"The high-performance engine optimised for real-time playback. Ensures fluid operation even on mid-range hardware, massive timelines, or complex grading environments while fully preserving the core visual aesthetic.",
                   zh:"高效能引擎，專為 real-time 運作設計。即使在中階硬體環境、大型專案或複雜場景下，依然保持流暢，同時確立核心色彩轉換。" },
@@ -314,7 +314,7 @@ export default function App() {
                   borderLeft:`3px solid ${v.hi?C.orange:C.border2}`,
                   borderRadius:6, padding:"22px 24px" }}>
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:14, gap:8 }}>
-                    <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:15, fontWeight:700,
+                    <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:15, fontWeight:700,
                       color:v.hi?C.orange:"#E8D88A", textTransform:"uppercase", letterSpacing:"0.08em", lineHeight:1.2 }}>{v.name}</div>
                     <span style={{ fontFamily:"'DM Mono',monospace", fontSize:10,
                       color:v.hi?C.orange:C.muted,
@@ -323,7 +323,7 @@ export default function App() {
                       padding:"2px 9px", borderRadius:3, whiteSpace:"nowrap", flexShrink:0 }}>{v.badge}</span>
                   </div>
                   <p style={{ fontSize:16, color:C.textMed, lineHeight:1.7, marginBottom:10 }}>{v.en}</p>
-                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>{v.zh}</p>
+                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{v.zh}</p>
                 </div>
               ))}
             </div>
@@ -340,12 +340,12 @@ export default function App() {
               display:"flex", gap:16, alignItems:"flex-start", marginBottom:14 }}>
               <span style={{ fontSize:22, color:C.pink, flexShrink:0, lineHeight:1.2, marginTop:1 }}>▲</span>
               <div>
-                <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:17, fontWeight:700,
+                <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:17, fontWeight:700,
                   color:C.pink, textTransform:"uppercase", letterSpacing:"0.06em", marginBottom:8 }}>
                   DaVinci Resolve Studio Required</div>
                 <p style={{ fontSize:16, color:C.textMed, lineHeight:1.7, marginBottom:6 }}>
                   This tool utilises DCTL technology, which is exclusive to the Studio (Paid) version of DaVinci Resolve on Windows, macOS, and iPadOS.</p>
-                <p style={{ fontSize:14, color:C.textZh, lineHeight:1.75, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>
+                <p style={{ fontSize:14, color:C.textZh, lineHeight:1.75, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
                   本工具採 DCTL 技術開發，僅支援 Windows、macOS 及 iPadOS 上的 DaVinci Resolve Studio (付費版)。</p>
               </div>
             </div>
@@ -360,7 +360,7 @@ export default function App() {
                 Since each <strong style={{color:C.orange}}>Target Look</strong> within the DCTL already incorporates
                 independent colour normalization, enabling additional software colour management will result in image distortion.
               </p>
-              <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:20, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>
+              <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:20, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
                 本引擎專為非色彩管理 <strong style={{color:C.orange}}>unmanaged</strong> 工作流程設計。
                 請確保專案設定為 <strong style={{color:C.orange}}>DaVinci YRGB</strong>，並避免使用 RCM 或 ACES。
                 因 <strong style={{color:C.orange}}>Target Look</strong> 皆已內建獨立色彩還原處理，開啟其他色彩管理會導致畫面失真。
@@ -381,15 +381,15 @@ export default function App() {
                 it is highly recommended to enable <strong style={{color:C.orange}}>DaVinci Resolve's caching system</strong>.
                 When you first apply the engine, <strong style={{color:C.textHi}}>your GPU may take 1–3 seconds to compile the shader.</strong>
               </p>
-              <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:14, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>
-                為了在使用本引擎的高精度運算時確保完美的即時播放，強烈建議開啟<strong style={{color:C.orange}}>快取功能</strong>。
+              <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:14, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
+                為了在使用本引擎的高精度運算時確保流暢的即時播放，強烈建議開啟<strong style={{color:C.orange}}>快取功能</strong>。
                 首次套用引擎時，顯卡 GPU 可能需要 <strong style={{color:C.textHi}}>1 到 3 秒進行著色器編譯</strong>。
               </p>
               <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:8 }}>
                 Opening a project that uses the engine requires recompiling the shader —
                 <strong style={{color:C.textHi}}> a longer initial load is expected behaviour, not a stall.</strong>
               </p>
-              <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:14, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>
+              <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:14, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
                 開啟含有本引擎的專案時，系統需重新編譯著色器，<strong style={{color:C.textHi}}>載入時間較長屬正常現象，並非當機</strong>。
               </p>
               <CodeBox>
@@ -464,12 +464,12 @@ export default function App() {
                 <Card key={l.name} accentLeft={l.accentLeft} style={{ marginBottom:0 }}>
                   <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
                     <div style={{ width:10, height:10, borderRadius:"50%", background:l.dot, flexShrink:0 }} />
-                    <span style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:18, fontWeight:700,
+                    <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
                       color:C.textHi, textTransform:"uppercase", letterSpacing:"0.06em" }}>{l.name}</span>
-                    <span style={{ fontFamily:"'DM Sans','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜ {l.zh}</span>
+                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜ {l.zh}</span>
                   </div>
                   <p style={{ fontSize:16, color:C.textMed, lineHeight:1.72, marginBottom:7 }}>{l.en}</p>
-                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>{l.zh_desc}</p>
+                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{l.zh_desc}</p>
                 </Card>
               ))}
             </div>
@@ -482,9 +482,9 @@ export default function App() {
                     <div style={{ display:"flex", alignItems:"center", gap:10 }}>
                       <span style={{ fontSize:18, color:p.accentL, lineHeight:1, flexShrink:0 }}>{p.icon}</span>
                       <div>
-                        <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:18, fontWeight:700,
+                        <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
                           color:C.textHi, textTransform:"uppercase", letterSpacing:"0.06em", lineHeight:1.2 }}>{p.label}</div>
-                        <div style={{ fontSize:14, color:C.textZh, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>｜ {p.zh}</div>
+                        <div style={{ fontSize:14, color:C.textZh, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>｜ {p.zh}</div>
                       </div>
                     </div>
                     <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:5, flexShrink:0, marginLeft:10 }}>
@@ -496,7 +496,7 @@ export default function App() {
                     </div>
                   </div>
                   <p style={{ fontSize:16, color:C.textMed, lineHeight:1.72, marginBottom:7 }}>{p.en}</p>
-                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>{p.zh_desc}</p>
+                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{p.zh_desc}</p>
                 </Card>
               ))}
             </div>
@@ -506,14 +506,14 @@ export default function App() {
               <div style={{ display:"flex", gap:14, alignItems:"flex-start", marginBottom:14 }}>
                 <span style={{ fontSize:20, color:C.cyan, flexShrink:0, lineHeight:1.2 }}>ⓘ</span>
                 <div style={{ flex:1 }}>
-                  <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:18, fontWeight:700,
+                  <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
                     color:C.cyan, textTransform:"uppercase", letterSpacing:"0.06em", marginBottom:10 }}>
                     PRO TIP: CLIPPING &amp; DATA LEVELS</div>
                   <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:8 }}>
                     If you are working with transcoded Log footage (e.g., ProRes or DNxHR) and notice unexpected
                     highlight clipping or banding, the data range might be misinterpreted by the software.
                     Try adjusting the data levels manually:</p>
-                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:18, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>
+                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:18, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
                     如果調光專案使用了轉碼 Log 素材 (如 ProRes 或 DNxHR)，並且在畫面上觀察到異常的高光切斷或色彩斷層，請嘗試手動調整：</p>
                   <div style={{ borderTop:"1px solid #1e2840", paddingTop:6 }}>
                     <StepRow num="1" accentColor={C.cyan}
@@ -553,16 +553,16 @@ export default function App() {
             ].map(s => (
               <Card key={s.num} accentLeft={s.color} style={{ marginBottom:14 }}>
                 <div style={{ display:"flex", gap:18, alignItems:"flex-start" }}>
-                  <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:44, fontWeight:800,
+                  <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:44, fontWeight:800,
                     color:s.color, lineHeight:1, minWidth:52, flexShrink:0, opacity:0.9 }}>{s.num}</div>
                   <div style={{ flex:1 }}>
                     <div style={{ display:"flex", alignItems:"baseline", gap:10, marginBottom:12 }}>
-                      <span style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:17, fontWeight:700,
+                      <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:17, fontWeight:700,
                         color:s.color, textTransform:"uppercase", letterSpacing:"0.07em" }}>{s.title}</span>
-                      <span style={{ fontFamily:"'DM Sans','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜ {s.zh_title}</span>
+                      <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜ {s.zh_title}</span>
                     </div>
                     <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:9 }}>{s.en}</p>
-                    <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, fontFamily:"'DM Sans','Noto Sans TC',sans-serif" }}>{s.zh}</p>
+                    <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{s.zh}</p>
                   </div>
                 </div>
               </Card>
@@ -591,7 +591,7 @@ export default function App() {
                     borderRadius:5, padding:"8px 12px", textAlign:"center" }}>
                     <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11,
                       color:n.hi?C.orange:C.textMed, whiteSpace:"nowrap" }}>{n.label}</div>
-                    <div style={{ fontFamily:"'DM Sans','Noto Sans TC',sans-serif", fontSize:10,
+                    <div style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:10,
                       color:n.hi?"#9a7020":C.muted, whiteSpace:"nowrap", marginTop:3 }}>{n.sub}</div>
                   </div>
                 ))}
@@ -604,10 +604,10 @@ export default function App() {
             <span style={{ display:"inline-block", border:"1px solid #2a2a2a", color:"#555",
               fontSize:10, fontFamily:"'DM Mono',monospace", letterSpacing:"0.13em",
               padding:"2px 8px", borderRadius:3, marginBottom:11 }}>SHOWCASE</span>
-            <div style={{ fontFamily:"'Barlow Condensed',sans-serif", fontSize:"clamp(22px,3.5vw,38px)",
-              fontWeight:800, color:"#00B2A9", textTransform:"uppercase", letterSpacing:"0.03em",
+            <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(22px,3.5vw,38px)",
+              fontWeight:900, color:"#00B2A9", textTransform:"uppercase", letterSpacing:"0.03em",
               lineHeight:1.05, marginBottom:4 }}>Before / After Showcase</div>
-            <div style={{ fontFamily:"'DM Sans','Noto Sans TC',sans-serif", fontSize:15,
+            <div style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:15,
               color:"#DEDEDE", marginBottom:22 }}>實戰展示</div>
             <div style={{ position:"relative", paddingBottom:"56.25%", height:0,
               borderRadius:8, overflow:"hidden", border:"1px solid #1e1e1e", background:"#0d0d0d" }}>
