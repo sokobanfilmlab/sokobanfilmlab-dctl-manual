@@ -45,8 +45,10 @@ export default function Home() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        .product-card { transition: border-color 0.2s, transform 0.2s; cursor: pointer; }
-        .product-card:hover { transform: translateY(-3px); }
+        .product-card { transition: border-color 0.2s, transform 0.2s, background 0.2s; cursor: pointer; }
+        .product-card:hover { transform: translateY(-3px); border-color: var(--ac); background: #101010; }
+        .product-card .go-arrow { transition: transform 0.2s; }
+        .product-card:hover .go-arrow { transform: translateX(5px); }
       `}</style>
 
       <Navbar />
@@ -90,12 +92,15 @@ export default function Home() {
               className="product-card"
               onClick={() => navigate(p.path)}
               style={{
+                '--ac': p.accentLeft,
                 background: C.surf,
-                border: `1px solid #2a2200`,
+                border: `1px solid ${p.accentLeft}44`,
                 borderLeft: `3px solid ${p.accentLeft}`,
                 borderRadius: 8, padding: '28px 32px',
+                display: 'flex', alignItems: 'center', gap: 24,
               }}
             >
+              <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16, gap: 16, flexWrap: 'wrap' }}>
                 <div>
                   <div style={{
@@ -127,8 +132,8 @@ export default function Home() {
               <p style={{ fontSize: 15, color: C.textMed, lineHeight: 1.75, marginBottom: 6 }}>{p.desc}</p>
               <p style={{ fontSize: 13, color: C.textZh, lineHeight: 1.85, marginBottom: 18, fontFamily: "'DM Sans','Noto Sans TC',sans-serif" }}>{p.zh}</p>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #1e1e1e', paddingTop: 14 }}>
-                <div style={{ display: 'flex', gap: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', borderTop: '1px solid #1e1e1e', paddingTop: 14 }}>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                   {p.includes.map(inc => (
                     <span key={inc} style={{
                       fontFamily: "'DM Mono',monospace", fontSize: 10, color: '#888',
@@ -137,14 +142,13 @@ export default function Home() {
                     }}>{inc}</span>
                   ))}
                 </div>
-                <div style={{
-                  fontFamily: "'DM Mono',monospace", fontSize: 14, fontWeight: 500,
-                  color: '#00B2A9', letterSpacing: '0.1em',
-                  display: 'flex', alignItems: 'center', gap: 6,
-                }}>
-                  View Manual <span>→→</span>
-                </div>
               </div>
+              </div>
+
+              <div className="go-arrow" aria-hidden="true" style={{
+                fontFamily: "'DM Mono',monospace", fontSize: 30, fontWeight: 500,
+                color: '#00B2A9', flexShrink: 0, lineHeight: 1,
+              }}>→</div>
             </div>
           ))}
         </div>
@@ -152,7 +156,7 @@ export default function Home() {
         {/* Footer */}
         <div style={{ borderTop: '1px solid #1e1e1e', marginTop: 56, paddingTop: 24 }}>
           <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: '#333' }}>
-            User Manual · May 2026
+            User Manual · July 2026
           </div>
         </div>
       </main>
