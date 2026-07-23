@@ -6,13 +6,13 @@ const PRODUCTS = [
   {
     path: '/omni-log-engine',
     name: 'Omni Log Engine',
-    nameColor: '#F5A623',
-    accentLeft: '#F5A623',
+    nameColor: '#FF8200',
+    accentLeft: '#FF8200',
     tag: 'DCTL · DaVinci Resolve Studio',
-    tagColor: '#F5A623',
-    version: 'May 2026',
-    desc: 'A high-precision Log normalisation engine utilising advanced floating-point math. Ensures your sensor\'s dynamic range remains perfectly intact for cinematic colour grading.',
-    zh: '高精度 Log 影像還原引擎，採用浮點運算數學映射，確保攝影機動態範圍完美保留，建立堅實的調光核心基礎。',
+    tagColor: '#FF8200',
+    version: 'July 2026',
+    desc: 'A high-precision Log normalisation engine utilising advanced floating-point math. It ensures your sensor\'s dynamic range remains intact, creating a solid core for cinematic colour grading.',
+    zh: '高精度 Log 正規化引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎。',
     includes: ['Pro Suite', 'Light Engine'],
     platforms: ['Windows', 'macOS', 'iPadOS'],
   },
@@ -58,11 +58,11 @@ export default function Home() {
         {/* Hero */}
         <div style={{ marginBottom: 56, borderBottom: '1px solid #1e1e1e', paddingBottom: 40 }}>
           <div style={{
-            fontFamily: "'DM Mono',monospace", fontSize: 10, color: '#F5A623',
+            fontFamily: "'DM Mono',monospace", fontSize: 10, color: '#FF8200',
             letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 16,
             display: 'flex', alignItems: 'center', gap: 8,
           }}>
-            <span style={{ display: 'inline-block', width: 20, height: 1, background: '#F5A623' }} />
+            <span style={{ display: 'inline-block', width: 20, height: 1, background: '#FF8200' }} />
             Professional Colour Tools for Creative Workflows
           </div>
           <h1 style={{
@@ -73,8 +73,8 @@ export default function Home() {
           }}>Sokoban Film Lab</h1>
           <div style={{
             fontFamily: "'Barlow Condensed',sans-serif",
-            fontSize: 'clamp(16px,2.5vw,22px)', fontWeight: 300,
-            color: '#F5A623', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 20,
+            fontSize: 'clamp(16px,2.5vw,22px)', fontWeight: 400,
+            color: '#FF8200', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 20,
           }}>User Manuals</div>
           <p style={{ fontSize: 16, color: C.textMed, lineHeight: 1.75, maxWidth: 560 }}>
             Select a product below to view its full user manual, installation guide, and parameter reference.
@@ -90,7 +90,12 @@ export default function Home() {
             <div
               key={p.path}
               className="product-card"
+              role="button"
+              tabIndex={0}
               onClick={() => navigate(p.path)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(p.path) }
+              }}
               style={{
                 '--ac': p.accentLeft,
                 background: C.surf,
@@ -136,7 +141,7 @@ export default function Home() {
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                   {p.includes.map(inc => (
                     <span key={inc} style={{
-                      fontFamily: "'DM Mono',monospace", fontSize: 10, color: '#888',
+                      fontFamily: "'DM Mono',monospace", fontSize: 10, color: C.muted,
                       border: '1px solid #2a2a2a', background: '#0a0a0a',
                       padding: '2px 9px', borderRadius: 3,
                     }}>{inc}</span>
