@@ -113,14 +113,14 @@ function SectionHeading({ en, zh }) {
     </div>
   );
 }
-function SubLabel({ en, zh }) {
+function SubLabel({ en, zh, big }) {
   return (
-    <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:16, fontWeight:700,
+    <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:big?20:16, fontWeight:700,
       color:C.textHi, textTransform:"uppercase", letterSpacing:"0.1em",
-      borderBottom:"1px solid #2a2a2a", paddingBottom:8, marginBottom:20,
+      borderBottom:"1px solid #2a2a2a", paddingBottom:big?10:8, marginBottom:20,
       display:"flex", gap:14, alignItems:"baseline" }}>
       <span>{en}</span>
-      {zh && <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontWeight:400, fontSize:14,
+      {zh && <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontWeight:400, fontSize:big?15:14,
         color:C.textZh, letterSpacing:0, textTransform:"none" }}>{zh}</span>}
     </div>
   );
@@ -475,7 +475,7 @@ export default function App() {
             <PartTag>PART 3</PartTag>
             <SectionHeading en="Parameters Explanation" zh="介面工具說明" />
 
-            <SubLabel en="A. TARGET LOOK SELECTION" zh="目標風格選擇" />
+            <SubLabel en="A. TARGET LOOK SELECTION" zh="目標風格選擇" big />
 
             {/* v3 FILMIC — hero set */}
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:C.pink,
@@ -501,7 +501,7 @@ export default function App() {
             </div>
 
             {/* v2.2 — included Look library */}
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:C.muted,
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:C.orange,
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
               LOOK LIBRARY · v2.2
             </div>
@@ -520,7 +520,7 @@ export default function App() {
               ))}
             </div>
 
-            <SubLabel en="B. NORMALIZATION PARAMETERS" zh="校正參數說明" />
+            <SubLabel en="B. NORMALIZATION PARAMETERS" zh="校正參數說明" big />
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
               {PARAMS.map(p => (
                 <Card key={p.label} accentLeft={p.accentL} style={{ marginBottom:0 }}>
