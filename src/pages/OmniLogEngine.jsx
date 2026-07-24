@@ -315,18 +315,18 @@ export default function App() {
 
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:14 }}>
               {[
-                { name:"OMNI LOG ENGINE -FILMIC-", badge:"Rich / Mellow", hi:true, span:true,
-                  en:"The tone-led build. A colour response with more filmic character, wider tonal transitions through the highlights and midtones, and a footing that suits narrative work across formats.",
-                  zh:"以色調為主軸的建置。色彩響應更具 filmic 質感，高光與中間調的過渡更寬裕，適用於各類型影片敘事。" },
+                { name:"OMNI LOG ENGINE -FILMIC-", badge:"Rich / Mellow", hi:true,
+                  en:"A colour engine built toward a filmic foundation, letting Log settle into shape and style. Wider tonal transitions through the highlights and midtones — a fit for narrative work across formats.",
+                  zh:"以電影 filmic 基底為目標的色彩引擎，使 Log 畫面風格有型落定。高光與中間調的過渡更寬裕，適用於各類型影片敘事。" },
                 { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", hi:false,
                   en:<><strong style={{color:C.textHi}}>Includes BOTH Pro &amp; Light:</strong> The complete Offline/Online workflow arsenal. The Pro high-precision engine is engineered for maximum colour fidelity. Recommended for high-end workstations or tasks requiring stringent precision in image detail.</>,
                   zh:"包含 Pro 與 Light 雙引擎：完整的 Offline / Online 工作流程工具庫。Pro 高精度引擎專為最大色彩保真度設計，推薦於高階工作站環境使用。" },
                 { name:"OMNI LOG ENGINE -LIGHT-", badge:"Real-time", hi:false,
                   en:"The high-performance engine optimised for real-time playback. Ensures fluid operation even on mid-range hardware, massive timelines, or complex grading environments while fully preserving the core visual aesthetic.",
                   zh:"高效能引擎，專為 real-time 運作設計。即使在中階硬體環境、大型專案或複雜場景下，依然保持流暢，同時確立核心色彩轉換。" },
-              ].map(v => (
+              ].map((v, i) => (
                 <div key={v.name} className="hcard" style={{ background:C.surf,
-                  gridColumn: v.span ? "1/-1" : "auto",
+                  gridColumn: "1/-1",
                   border:`1px solid ${v.hi?"#3a2800":C.border}`,
                   borderLeft:`3px solid ${v.hi?C.orange:C.border2}`,
                   borderRadius:6, padding:"22px 24px" }}>
