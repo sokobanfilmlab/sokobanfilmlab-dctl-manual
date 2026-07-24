@@ -478,9 +478,9 @@ export default function App() {
             <SubLabel en="A. TARGET LOOK SELECTION" zh="目標風格選擇" />
 
             {/* v3 FILMIC — hero set */}
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:C.pink,
-              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:12 }}>
-              FILMIC SERIES · v3.0 <span style={{ color:C.textZh, marginLeft:10, fontFamily:"'Rubik','Noto Sans TC',sans-serif", letterSpacing:0, textTransform:"none" }}>兩顆基底，兩種畫面個性</span>
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:C.pink,
+              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
+              FILMIC SERIES · v3.0
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
               {LOOKS_V3.map(l => (
@@ -501,9 +501,9 @@ export default function App() {
             </div>
 
             {/* v2.2 — included Look library */}
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#888",
-              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:12 }}>
-              LOOK LIBRARY · v2.2 <span style={{ color:C.textZh, marginLeft:10, fontFamily:"'Rubik','Noto Sans TC',sans-serif", letterSpacing:0, textTransform:"none" }}>隨附完整 Look 庫</span>
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:C.muted,
+              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
+              LOOK LIBRARY · v2.2
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:36 }}>
               {LOOKS_V2.map(l => (
