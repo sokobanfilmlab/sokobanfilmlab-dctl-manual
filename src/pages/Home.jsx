@@ -10,10 +10,10 @@ const PRODUCTS = [
     accentLeft: '#FF8200',
     tag: 'DCTL · DaVinci Resolve Studio',
     tagColor: '#FF8200',
-    version: 'July 2026',
+    version: 'v3.0',
     desc: 'A high-precision Log normalisation engine utilising advanced floating-point math. It ensures your sensor\'s dynamic range remains intact, creating a solid core for cinematic colour grading.',
     zh: '高精度 Log 正規化引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎。',
-    includes: ['Pro Suite', 'Light Engine'],
+    includes: ['FILMIC', 'Pro Suite', 'Light Engine'],
     platforms: ['Windows', 'macOS', 'iPadOS'],
   },
   // ── 複製以上物件來新增 Engine ────────────────────────────
