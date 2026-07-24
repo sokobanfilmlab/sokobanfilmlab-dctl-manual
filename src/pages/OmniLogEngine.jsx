@@ -8,7 +8,7 @@ const IMGS = {
 };
 
 /* ── PALETTE (exact from PDF) ─────────────────────────────
-   Pure black bg, #0d0d0d card surface, orange #F5A623 accent,
+   Pure black bg, #0d0d0d card surface, Fiesta orange #FF8200 accent,
    cyan #4DBFBF, purple #8B6FD4, green #5EC28A
 ──────────────────────────────────────────────────────────*/
 const C = {
@@ -17,7 +17,8 @@ const C = {
   surf2:   "#111111",
   border:  "#1e1e1e",
   border2: "#2a2a2a",
-  orange:  "#F5A623",
+  orange:  "#FF8200",   /* Fiesta 品牌橘：結構／導覽／卡片 */
+  inline:  "#F5A623",   /* 內文強調：段落內 strong / span */
   cyan:    "#4DBFBF",
   purple:  "#8B6FD4",
   green:   "#5EC28A",
@@ -38,12 +39,21 @@ const NAV = [
   { id:"part4", label:"Part 4",    zh:"Workflow" },
 ];
 
-const LOOKS = [
+const LOOKS_V3 = [
+  { name:"Rich",  zh:"豐實", dot:C.pink, accentLeft:C.pink, tag:"v3.0 FILMIC", tagC:C.pink,
+    en:"Filmic foundation with weight. Deep shadows, solid midtones, and a rounded highlight rolloff — the image sits grounded and full.",
+    zh_desc:"帶有重量的 filmic 基底。深厚的暗部、扎實的中間調、圓潤的高光滾降，讓畫面沉穩飽滿。" },
+  { name:"Mellow", zh:"溫醇", dot:C.teal, accentLeft:C.teal, tag:"v3.0 FILMIC", tagC:C.teal,
+    en:"Filmic foundation with warmth. Soft, buttery dimensional contrast and reined-in highlights — the image feels organic and natural.",
+    zh_desc:"溫暖的 filmic 基底。柔軟的立體反差、收斂的高光，畫面有機自然。" },
+];
+
+const LOOKS_V2 = [
   { name:"DYNAMIC",      zh:"動態 / 預設", dot:C.orange, accentLeft:C.orange,
-    en:"Designed for extreme high-contrast lighting scenarios, maximising the sensor's ultimate dynamic range. While preserving shadow details, it ensures extreme highlights exhibit a soft, smooth, filmic rolloff.",
-    zh_desc:"專為極端光比場景設計，最大化感光元件的極限動態範圍。在保留暗部細節的同時，確保極高光區域呈現如底片般柔和的過渡滾降。" },
+    en:"Designed for extreme high-contrast lighting scenarios, drawing on the sensor's maximum dynamic range. While preserving shadow details, it ensures extreme highlights exhibit a soft, smooth rolloff.",
+    zh_desc:"專為極端光比場景設計，最大化感光元件的動態範圍。在保留暗部細節的同時，確保極高光區域呈現柔和的過渡滾降。" },
   { name:"BALANCE",      zh:"平衡",        dot:C.green,  accentLeft:C.green,
-    en:'Delivers uniform colour reproduction and a balanced contrast curve. When a project prioritises "realism," this mode provides the perfect neutral starting point for your grade.',
+    en:'Delivers uniform colour reproduction and a balanced contrast curve. When a project prioritises "realism," this mode provides the most neutral starting point for your grade.',
     zh_desc:"提供均勻的色彩還原與反差曲線。當專案首重「真實感」時，此模式能提供最中性的調色起點。" },
   { name:"STANDARD",     zh:"標準",        dot:C.cyan,   accentLeft:C.cyan,
     en:"Universally adaptable to Log footage from almost any camera system. Simulates a standard filmic S-curve, instantly building volume, depth, and rich midtone details within the image.",
@@ -58,20 +68,23 @@ const PARAMS = [
     en:'True photometric "Stops" control. Simulates a physical camera aperture to precisely adjust exposure and recover details without shifting contrast.',
     zh_desc:"真正的「曝光級數 (Stops)」控制。模擬實體光圈物理運算，精準調整曝光量，保護影像底層反差。", range:"−4 → +4 EV" },
   { icon:"◆", label:"TEMPERATURE", zh:"色溫",     tag:"v2.0 UPGRADED", tagC:C.cyan,   accentL:C.cyan,
-    en:"Optical-style white balance. Shifts the warm/cool vibe precisely while keeping the colors clean and mud-free.",
+    en:"Optical-style white balance. Shifts the warm/cool vibe precisely while keeping the colours clean and mud-free.",
     zh_desc:"模擬光學濾鏡的色溫調整。控制畫面的冷暖氣圍，並維持色彩的純淨度。", range:"2000K → 10000K" },
   { icon:"◇", label:"TINT",        zh:"色調",     tag:"v2.1 NEW",      tagC:C.cyan,   accentL:C.cyan,
     en:"Optical-style magenta/green axis correction. Cancels the green/magenta shift common to fluorescent and LED sources.",
     zh_desc:"模擬光學色片的洋紅-綠軸校正。化解日光燈、LED 等混光現場常見的綠/洋紅偏移。", range:"Magenta ↔ Green" },
   { icon:"◑", label:"CONTRAST",    zh:"對比",     tag:null, accentL:C.purple,
-    en:"Log-native power curve for non-destructive depth control.",
+    en:"Log-native power curve for smooth depth control.",
     zh_desc:"Log 原生冪函數曲線，提供平滑的影像深度調整。", range:"−100 → +100" },
   { icon:"⊘", label:"CONTRAST PIVOT", zh:"對比軸心", tag:null, accentL:"#E8C77A",
     en:"Tonal center alignment tool. Anchors the contrast expansion point to preserve critical midtone details across the dynamic range.",
     zh_desc:"光度對比軸心設定。定義對比擴張的中心點，在拉開動態範圍時保留中階層次與細節。", range:"0 → 100%" },
+  { icon:"⊙", label:"VIBRANCE",    zh:"鮮豔度",   tag:"v2.2 NEW",      tagC:C.green,  accentL:C.green,
+    en:"Non-linear saturation control. Gain varies with the saturation of the source image — stronger lift in muted areas, easing off where already saturated. Suited to overall colour density without pushing saturated regions out of range.",
+    zh_desc:"非線性飽和控制。依原始畫面飽和程度給予不同增量——偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。", range:"0 → 100" },
   { icon:"⊕", label:"SATURATION",  zh:"飽和度",   tag:null, accentL:C.green,
-    en:"Luminance-aware colour intensity control.",
-    zh_desc:"基於影像亮度的色彩飽和度控制。", range:"0 → 200%" },
+    en:"Linear saturation control. A uniform scale across the frame with luminance held constant. Suited to multi-camera matching and precise adjustment.",
+    zh_desc:"線性飽和控制。全畫面等量增減，亮度保持恆定。適合多機位匹配與精準調整。", range:"0 → 200%" },
   { icon:"☒", label:"SHADOWS / MIDTONES / HIGHLIGHTS", zh:"分區調光", tag:"v2.0 UPGRADED", tagC:C.orange, accentL:C.orange,
     en:"Independent tonal controls. Isolates lighting regions to separate subjects from the background without complex masking.",
     zh_desc:"影像分區調控，獨立區分影像亮、中灰與暗部，協助分離主體與背景光影，降低對二次遮罩的依賴。", range:"3-Band" },
@@ -252,9 +265,9 @@ export default function App() {
           <div style={{ margin:"28px 14px 0", borderTop:"1px solid #1e1e1e", paddingTop:20 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, color:"#666",
               letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Version</div>
-            {["Pro Suite","+ Light Engine","June 2026"].map((t,i) => (
+            {["Pro Suite","+ Light Engine","+ FILMIC","July 2026"].map((t,i,arr) => (
               <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:12,
-                color:i===2?"#B07A35":"#888", lineHeight:1.9 }}>{t}</div>
+                color:i===arr.length-1?"#B07A35":"#888", lineHeight:1.9 }}>{t}</div>
             ))}
           </div>
         </aside>
@@ -284,7 +297,7 @@ export default function App() {
                 SokobanFilmLab
               </div>
               <p style={{ fontSize:17, color:C.textMed, lineHeight:1.75, maxWidth:640, margin:"0 auto 12px" }}>
-                Beyond being a mere LUT, the <strong style={{color:C.orange}}>SokobanFilmLab Omni Log Engine</strong> serves as a
+                Beyond being a mere LUT, the <strong style={{color:C.inline}}>SokobanFilmLab Omni Log Engine</strong> serves as a
                 high-precision transformation tool utilising advanced floating-point math.
               </p>
               <p style={{ fontSize:17, color:C.textMed, lineHeight:1.75, maxWidth:640, margin:"0 auto 12px" }}>
@@ -294,7 +307,7 @@ export default function App() {
               </p>
               <p style={{ fontSize:15, color:C.textZh, lineHeight:1.85, maxWidth:600, margin:"0 auto",
                 fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
-                <strong style={{color:C.orange}}>SokobanFilmLab Omni Log Engine</strong> 不僅僅是一個 LUT，它是一組高精度的色彩轉換引擎，
+                <strong style={{color:C.inline}}>SokobanFilmLab Omni Log Engine</strong> 不僅僅是一個 LUT，它是一組高精度的色彩轉換引擎，
                 採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎，
                 呈現自然平衡的光度色調層次，提供一個高度靈活的專業電影級畫布。
               </p>
@@ -302,7 +315,10 @@ export default function App() {
 
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:14 }}>
               {[
-                { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", hi:true,
+                { name:"OMNI LOG ENGINE -FILMIC-", badge:"Rich / Mellow", hi:true, span:true,
+                  en:"The tone-led build. A colour response with more filmic character, wider tonal transitions through the highlights and midtones, and a footing that suits narrative work across formats.",
+                  zh:"以色調為主軸的建置。色彩響應更具 filmic 質感，高光與中間調的過渡更寬裕，適用於各類型影片敘事。" },
+                { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", hi:false,
                   en:<><strong style={{color:C.textHi}}>Includes BOTH Pro &amp; Light:</strong> The complete Offline/Online workflow arsenal. The Pro high-precision engine is engineered for maximum colour fidelity. Recommended for high-end workstations or tasks requiring stringent precision in image detail.</>,
                   zh:"包含 Pro 與 Light 雙引擎：完整的 Offline / Online 工作流程工具庫。Pro 高精度引擎專為最大色彩保真度設計，推薦於高階工作站環境使用。" },
                 { name:"OMNI LOG ENGINE -LIGHT-", badge:"Real-time", hi:false,
@@ -310,6 +326,7 @@ export default function App() {
                   zh:"高效能引擎，專為 real-time 運作設計。即使在中階硬體環境、大型專案或複雜場景下，依然保持流暢，同時確立核心色彩轉換。" },
               ].map(v => (
                 <div key={v.name} className="hcard" style={{ background:C.surf,
+                  gridColumn: v.span ? "1/-1" : "auto",
                   border:`1px solid ${v.hi?"#3a2800":C.border}`,
                   borderLeft:`3px solid ${v.hi?C.orange:C.border2}`,
                   borderRadius:6, padding:"22px 24px" }}>
@@ -354,22 +371,22 @@ export default function App() {
             <Card>
               <SubLabel en="PROJECT SETTINGS REQUIREMENT" zh="專案色彩科學設定" />
               <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:8 }}>
-                This engine is optimised for an <strong style={{color:C.orange}}>unmanaged</strong> colour workflow.
-                Please ensure your project is set to <strong style={{color:C.orange}}>DaVinci YRGB</strong> and avoid
+                This engine is optimised for an <strong style={{color:C.inline}}>unmanaged</strong> colour workflow.
+                Please ensure your project is set to <strong style={{color:C.inline}}>DaVinci YRGB</strong> and avoid
                 using DaVinci YRGB Color Managed (RCM) or ACES.<br/>
-                Since each <strong style={{color:C.orange}}>Target Look</strong> within the DCTL already incorporates
+                Since each <strong style={{color:C.inline}}>Target Look</strong> within the DCTL already incorporates
                 independent colour normalization, enabling additional software colour management will result in image distortion.
               </p>
               <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:20, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
-                本引擎專為非色彩管理 <strong style={{color:C.orange}}>unmanaged</strong> 工作流程設計。
-                請確保專案設定為 <strong style={{color:C.orange}}>DaVinci YRGB</strong>，並避免使用 RCM 或 ACES。
-                因 <strong style={{color:C.orange}}>Target Look</strong> 皆已內建獨立色彩還原處理，開啟其他色彩管理會導致畫面失真。
+                本引擎專為非色彩管理 <strong style={{color:C.inline}}>unmanaged</strong> 工作流程設計。
+                請確保專案設定為 <strong style={{color:C.inline}}>DaVinci YRGB</strong>，並避免使用 RCM 或 ACES。
+                因 <strong style={{color:C.inline}}>Target Look</strong> 皆已內建獨立色彩還原處理，開啟其他色彩管理會導致畫面失真。
               </p>
               <div style={{ borderTop:"1px solid #2a2a2a", paddingTop:6 }}>
-                <StepRow num="1" en={<>Click the <strong style={{color:C.orange}}>Project Settings Gear</strong> in the bottom right corner.</>} zh="點擊右下角的專案設定齒輪" />
-                <StepRow num="2" en={<>Go to the <strong style={{color:C.orange}}>Color Management</strong> tab.</>} zh="進入 Color Management 標籤" />
-                <StepRow num="3" en={<>Set <strong style={{color:C.orange}}>Color science</strong> to <strong style={{color:C.orange}}>DaVinci YRGB</strong>.</>} zh="將色彩科學設為 DaVinci YRGB" />
-                <StepRow num="4" en={<>Ensure <strong style={{color:C.orange}}>Timeline Color Space</strong> remains at <strong style={{color:C.orange}}>Rec.709 (Scene)</strong>.</>} zh="請確保時間軸色彩空間保持系統預設的 Rec.709 Scene" />
+                <StepRow num="1" en={<>Click the <strong style={{color:C.inline}}>Project Settings Gear</strong> in the bottom right corner.</>} zh="點擊右下角的專案設定齒輪" />
+                <StepRow num="2" en={<>Go to the <strong style={{color:C.inline}}>Color Management</strong> tab.</>} zh="進入 Color Management 標籤" />
+                <StepRow num="3" en={<>Set <strong style={{color:C.inline}}>Color science</strong> to <strong style={{color:C.inline}}>DaVinci YRGB</strong>.</>} zh="將色彩科學設為 DaVinci YRGB" />
+                <StepRow num="4" en={<>Ensure <strong style={{color:C.inline}}>Timeline Color Space</strong> remains at <strong style={{color:C.inline}}>Rec.709 (Scene)</strong>.</>} zh="請確保時間軸色彩空間保持系統預設的 Rec.709 Scene" />
               </div>
             </Card>
 
@@ -378,11 +395,11 @@ export default function App() {
               <SubLabel en="PERFORMANCE: CACHE & LOADING" zh="效能最佳化：快取載入" />
               <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:8 }}>
                 To ensure buttery-smooth real-time playback while utilising the ultra-high-precision math of OmniLogEngine,
-                it is highly recommended to enable <strong style={{color:C.orange}}>DaVinci Resolve's caching system</strong>.
+                it is highly recommended to enable <strong style={{color:C.inline}}>DaVinci Resolve's caching system</strong>.
                 When you first apply the engine, <strong style={{color:C.textHi}}>your GPU may take 1–3 seconds to compile the shader.</strong>
               </p>
               <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:14, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
-                為了在使用本引擎的高精度運算時確保流暢的即時播放，強烈建議開啟<strong style={{color:C.orange}}>快取功能</strong>。
+                為了在使用本引擎的高精度運算時確保流暢的即時播放，強烈建議開啟<strong style={{color:C.inline}}>快取功能</strong>。
                 首次套用引擎時，顯卡 GPU 可能需要 <strong style={{color:C.textHi}}>1 到 3 秒進行著色器編譯</strong>。
               </p>
               <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:8 }}>
@@ -394,9 +411,9 @@ export default function App() {
               </p>
               <CodeBox>
                 <span style={{color:C.muted}}>Menu → </span>
-                <span style={{color:C.orange, fontWeight:600}}>Playback</span>
+                <span style={{color:C.inline, fontWeight:600}}>Playback</span>
                 <span style={{color:C.muted}}> › </span>
-                <span style={{color:C.orange, fontWeight:600}}>Render Cache</span>
+                <span style={{color:C.inline, fontWeight:600}}>Render Cache</span>
                 <span style={{color:C.muted}}> → Set to </span>
                 <span style={{color:C.pink, fontWeight:600}}>Smart</span>
               </CodeBox>
@@ -415,22 +432,22 @@ export default function App() {
               { platform:"WINDOWS", icon:"⊞",
                 path:"C:\\ProgramData\\Blackmagic Design\\DaVinci Resolve\\Support\\LUT\\MyDCTL\\",
                 steps:[
-                  { en:<>Create the <strong style={{color:C.orange}}>MyDCTL</strong> folder at the path above.</>, zh:<>在以上路徑建立 <strong style={{color:C.orange}}>MyDCTL</strong> 資料夾</> },
-                  { en:<>Copy the <strong style={{color:C.orange}}>.dctle</strong> files into it.</>, zh:<>將 <strong style={{color:C.orange}}>.dctle</strong> 檔案複製進去</> },
+                  { en:<>Create the <strong style={{color:C.inline}}>MyDCTL</strong> folder at the path above.</>, zh:<>在以上路徑建立 <strong style={{color:C.inline}}>MyDCTL</strong> 資料夾</> },
+                  { en:<>Copy the <strong style={{color:C.inline}}>.dctle</strong> files into it.</>, zh:<>將 <strong style={{color:C.inline}}>.dctle</strong> 檔案複製進去</> },
                   { en:<>Restart <strong style={{color:C.textHi}}>DaVinci Resolve.</strong></>, zh:<>重新啟動 <strong style={{color:C.textHi}}>DaVinci Resolve</strong></> },
                 ]},
               { platform:"MACOS", icon:"",
                 path:"/Library/Application Support/Blackmagic Design/DaVinci Resolve/LUT/MyDCTL/",
                 steps:[
-                  { en:<>Create the <strong style={{color:C.orange}}>MyDCTL</strong> folder at the path above.</>, zh:<>在以上路徑建立 <strong style={{color:C.orange}}>MyDCTL</strong> 資料夾</> },
-                  { en:<>Copy the <strong style={{color:C.orange}}>.dctle</strong> files into it.</>, zh:<>將 <strong style={{color:C.orange}}>.dctle</strong> 檔案複製進去</> },
+                  { en:<>Create the <strong style={{color:C.inline}}>MyDCTL</strong> folder at the path above.</>, zh:<>在以上路徑建立 <strong style={{color:C.inline}}>MyDCTL</strong> 資料夾</> },
+                  { en:<>Copy the <strong style={{color:C.inline}}>.dctle</strong> files into it.</>, zh:<>將 <strong style={{color:C.inline}}>.dctle</strong> 檔案複製進去</> },
                   { en:<>Restart <strong style={{color:C.textHi}}>DaVinci Resolve.</strong></>, zh:<>重新啟動 <strong style={{color:C.textHi}}>DaVinci Resolve</strong></> },
                 ]},
               { platform:"iPAD OS", icon:"📱", path:null,
                 steps:[
-                  { en:<>Open the <strong style={{color:C.orange}}>Files</strong> App.</>, zh:<>開啟「<strong style={{color:C.orange}}>檔案</strong>」App</> },
+                  { en:<>Open the <strong style={{color:C.inline}}>Files</strong> App.</>, zh:<>開啟「<strong style={{color:C.inline}}>檔案</strong>」App</> },
                   { en:<>Navigate to: <strong style={{color:C.cyan}}>On My iPad › DaVinci Resolve › LUT</strong></>, zh:<>前往：<strong style={{color:C.cyan}}>我的 iPad › DaVinci Resolve › LUT</strong></> },
-                  { en:<>Create folder <strong style={{color:C.orange}}>MyDCTL</strong> and paste the <strong style={{color:C.orange}}>.dctle</strong> files.</>, zh:<>建立 <strong style={{color:C.orange}}>MyDCTL</strong> 資料夾，並貼上 <strong style={{color:C.orange}}>.dctle</strong> 檔案</> },
+                  { en:<>Create folder <strong style={{color:C.inline}}>MyDCTL</strong> and paste the <strong style={{color:C.inline}}>.dctle</strong> files.</>, zh:<>建立 <strong style={{color:C.inline}}>MyDCTL</strong> 資料夾，並貼上 <strong style={{color:C.inline}}>.dctle</strong> 檔案</> },
                 ]},
             ].map(item => (
               <Card key={item.platform} style={{ marginBottom:16 }}>
@@ -459,8 +476,37 @@ export default function App() {
             <SectionHeading en="Parameters Explanation" zh="介面工具說明" />
 
             <SubLabel en="A. TARGET LOOK SELECTION" zh="目標風格選擇" />
+
+            {/* v3 FILMIC — hero set */}
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:C.pink,
+              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:12 }}>
+              FILMIC SERIES · v3.0 <span style={{ color:C.textZh, marginLeft:10, fontFamily:"'Rubik','Noto Sans TC',sans-serif", letterSpacing:0, textTransform:"none" }}>兩顆基底，兩種畫面個性</span>
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
+              {LOOKS_V3.map(l => (
+                <Card key={l.name} accentLeft={l.accentLeft} style={{ marginBottom:0 }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
+                    <div style={{ width:10, height:10, borderRadius:"50%", background:l.dot, flexShrink:0 }} />
+                    <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
+                      color:C.textHi, textTransform:"uppercase", letterSpacing:"0.06em" }}>{l.name}</span>
+                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜ {l.zh}</span>
+                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:9, color:l.tagC,
+                      border:`1px solid ${l.tagC}44`, background:`${l.tagC}11`,
+                      padding:"2px 8px", borderRadius:3, letterSpacing:"0.1em", whiteSpace:"nowrap", marginLeft:"auto" }}>{l.tag}</span>
+                  </div>
+                  <p style={{ fontSize:16, color:C.textMed, lineHeight:1.72, marginBottom:7 }}>{l.en}</p>
+                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{l.zh_desc}</p>
+                </Card>
+              ))}
+            </div>
+
+            {/* v2.2 — included Look library */}
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#888",
+              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:12 }}>
+              LOOK LIBRARY · v2.2 <span style={{ color:C.textZh, marginLeft:10, fontFamily:"'Rubik','Noto Sans TC',sans-serif", letterSpacing:0, textTransform:"none" }}>隨附完整 Look 庫</span>
+            </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:36 }}>
-              {LOOKS.map(l => (
+              {LOOKS_V2.map(l => (
                 <Card key={l.name} accentLeft={l.accentLeft} style={{ marginBottom:0 }}>
                   <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
                     <div style={{ width:10, height:10, borderRadius:"50%", background:l.dot, flexShrink:0 }} />
@@ -542,11 +588,11 @@ export default function App() {
 
             {[
               { num:"01", title:"INITIAL PLACEMENT",    zh_title:"核心節點建置",       color:C.orange,
-                en:<>Position the <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.orange}}>DCTL</strong> from the <strong style={{color:C.orange}}>Open FX</strong> library to serve as your primary normalization stage, ensuring it processes pure, original Log data.</>,
-                zh:<>將 <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> <strong style={{color:C.orange}}>DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.orange}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
+                en:<>Position the <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.inline}}>DCTL</strong> from the <strong style={{color:C.inline}}>Open FX</strong> library to serve as your primary normalization stage, ensuring it processes pure, original Log data.</>,
+                zh:<>將 <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> <strong style={{color:C.inline}}>DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.inline}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
               { num:"02", title:"PRIMARY BALANCING",    zh_title:"基礎色彩校正平衡",   color:C.green,
-                en:<>Prioritize using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Contrast, Saturation,</strong> and <strong style={{color:C.green}}>Shadows / Midtones / Highlights</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
-                zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、對比、飽和度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
+                en:<>Prioritise using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Tint, Contrast, Vibrance, Saturation,</strong> and <strong style={{color:C.green}}>Shadows / Midtones / Highlights</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
+                zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、色調、對比、鮮豔度、飽和度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
               { num:"03", title:"FLEXIBLE NODE PIPELINE", zh_title:"靈活的 NODE 創意結構", color:C.cyan,
                 en:<>The engine integrates seamlessly into your node tree. You can apply simple <strong style={{color:C.cyan}}>Power Windows</strong> in nodes prior to the engine to adjust uneven raw Log lighting. After the engine, the high-precision normalised image provides a clean foundation for advanced secondary grading, such as <strong style={{color:C.cyan}}>Color Slice</strong> or pulling <strong style={{color:C.cyan}}>precise keys and mattes</strong>.</>,
                 zh:<>引擎能無縫融入節點結構。可以先在引擎前方的節點，加入區域遮罩 <strong style={{color:C.cyan}}>Power Window</strong> 預先調整原始 Log 畫面的光影分布；轉換後的高精度畫面，將為後續的<strong style={{color:C.cyan}}>色彩分割 Color Slice</strong> 或精確的<strong style={{color:C.cyan}}>選色去背 Key / Matte</strong> 提供最乾淨的次級調光基底。</> },
@@ -624,7 +670,7 @@ export default function App() {
           {/* Footer */}
           <footer style={{ borderTop:"1px solid #1e1e1e", paddingTop:28 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#333" }}>
-              User Manual · June 2026</div>
+              User Manual · July 2026</div>
           </footer>
 
         </main>
