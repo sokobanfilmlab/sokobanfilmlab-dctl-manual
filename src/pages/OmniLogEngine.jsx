@@ -316,7 +316,7 @@ export default function App() {
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:14 }}>
               {[
                 { name:"OMNI LOG ENGINE -FILMIC-", badge:"Rich / Mellow", hi:true,
-                  en:"A colour engine built to realise a filmic foundation, letting Log settle into shape and style. Wider tonal transitions through the highlights and midtones — a fit for narrative work across formats.",
+                  en:"A colour engine built to realise a filmic foundation, letting Log resolve into a full, dimensional image. Wider tonal transitions through the highlights and midtones — a fit for narrative work across formats.",
                   zh:"以實現電影 filmic 基底為目標的色彩引擎，使 Log 畫面風格有型落定。高光與中間調的過渡更寬裕，適用於各類型影片敘事。" },
                 { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", hi:false,
                   en:<><strong style={{color:C.textHi}}>Includes BOTH Pro &amp; Light:</strong> The complete Offline/Online workflow arsenal. The Pro high-precision engine is engineered for maximum colour fidelity. Recommended for high-end workstations or tasks requiring stringent precision in image detail.</>,
