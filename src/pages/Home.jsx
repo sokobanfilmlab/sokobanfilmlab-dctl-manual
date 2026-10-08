@@ -10,10 +10,10 @@ const PRODUCTS = [
     accentLeft: '#FF8200',
     tag: 'DCTL · DaVinci Resolve Studio',
     tagColor: '#FF8200',
-    version: 'v3.0',
+    version: 'v4.0',
     desc: 'A high-precision Log normalisation engine utilising advanced floating-point math. It ensures your sensor\'s dynamic range remains intact, creating a solid core for cinematic colour grading.',
     zh: '高精度 Log 正規化引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎。',
-    includes: ['FILMIC', 'Pro Suite', 'Light Engine'],
+    includes: ['POP', 'FILMIC', 'Pro Suite', 'Light Engine'],
     platforms: ['Windows', 'macOS', 'iPadOS'],
   },
   // ── 複製以上物件來新增 Engine ────────────────────────────
@@ -47,8 +47,8 @@ export default function Home() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         .product-card { transition: border-color 0.2s, transform 0.2s, background 0.2s; cursor: pointer; }
         .product-card:hover { transform: translateY(-3px); border-color: var(--ac); background: #101010; }
-        .product-card .go-arrow { transition: transform 0.2s; }
-        .product-card:hover .go-arrow { transform: translateX(5px); }
+        .product-card .go-arrow { transition: transform 0.2s, background 0.2s, color 0.2s; }
+        .product-card:hover .go-arrow { transform: translateX(5px); background: #00B2A9; color: #000 !important; }
       `}</style>
 
       <Navbar />
@@ -119,15 +119,15 @@ export default function Home() {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
                   <span style={{
-                    fontFamily: "'DM Mono',monospace", fontSize: 10,
+                    fontFamily: "'DM Mono',monospace", fontSize: 12,
                     color: p.nameColor, border: `1px solid ${p.nameColor}44`,
-                    background: `${p.nameColor}11`, padding: '2px 10px', borderRadius: 3,
+                    background: `${p.nameColor}11`, padding: '4px 12px', borderRadius: 3,
                   }}>{p.version}</span>
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
                     {p.platforms.map(pl => (
                       <span key={pl} style={{
-                        fontFamily: "'DM Mono',monospace", fontSize: 9, color: C.muted,
-                        border: '1px solid #2a2a2a', padding: '1px 7px', borderRadius: 3,
+                        fontFamily: "'DM Mono',monospace", fontSize: 11, color: C.muted,
+                        border: '1px solid #2a2a2a', padding: '3px 9px', borderRadius: 3,
                       }}>{pl}</span>
                     ))}
                   </div>
@@ -141,9 +141,9 @@ export default function Home() {
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                   {p.includes.map(inc => (
                     <span key={inc} style={{
-                      fontFamily: "'DM Mono',monospace", fontSize: 10, color: C.muted,
+                      fontFamily: "'DM Mono',monospace", fontSize: 12, color: C.muted,
                       border: '1px solid #2a2a2a', background: '#0a0a0a',
-                      padding: '2px 9px', borderRadius: 3,
+                      padding: '4px 12px', borderRadius: 3,
                     }}>{inc}</span>
                   ))}
                 </div>
@@ -151,7 +151,10 @@ export default function Home() {
               </div>
 
               <div className="go-arrow" aria-hidden="true" style={{
-                fontFamily: "'DM Mono',monospace", fontSize: 30, fontWeight: 500,
+                width: 56, height: 56, borderRadius: '50%',
+                border: '2px solid #00B2A9',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: "'DM Mono',monospace", fontSize: 26, fontWeight: 500,
                 color: '#00B2A9', flexShrink: 0, lineHeight: 1,
               }}>→</div>
             </div>
@@ -161,7 +164,7 @@ export default function Home() {
         {/* Footer */}
         <div style={{ borderTop: '1px solid #1e1e1e', marginTop: 56, paddingTop: 24 }}>
           <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: '#333' }}>
-            User Manual · July 2026
+            User Manual · October 2026
           </div>
         </div>
       </main>

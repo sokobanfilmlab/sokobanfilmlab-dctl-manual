@@ -31,6 +31,13 @@ const C = {
   muted:   "#DEDEDE",
 };
 
+/* 系列漸層：POP 桃紅／FILMIC 橘／v2.2 青綠（Look 卡圓點與左框依序取色） */
+const G = {
+  pink:   ["#EF426F", "#F47C99"],
+  orange: ["#FF8200", "#FFAA55"],
+  teal:   ["#00B2A9", "#33C1B9", "#66D0CA", "#99DFDB"],
+};
+
 const NAV = [
   { id:"intro", label:"Overview",  zh:"總覽" },
   { id:"part1", label:"Part 1",    zh:"Technical Setup" },
@@ -39,55 +46,97 @@ const NAV = [
   { id:"part4", label:"Part 4",    zh:"Workflow" },
 ];
 
+const LOOKS_V4 = [
+  { name:"Bubble", zh:"澄亮", dot:G.pink[0], accentLeft:G.pink[0], tag:"v4.0 POP", tagC:G.pink[0],
+    en:"POP foundation with clarity. Gentle contrast, a soft highlight rolloff, and cleanly separated colours; the image feels light and clean.",
+    zh_desc:"明亮清透的 POP 基底。對比溫和柔美、色彩輕盈。" },
+  { name:"Balloon", zh:"盈潤", dot:G.pink[1], accentLeft:G.pink[1], tag:"v4.0 POP", tagC:G.pink[1],
+    en:"POP foundation with volume. Fuller contrast, open highlights, and dense colour; the image feels soft yet dimensional.",
+    zh_desc:"鮮明有型的 POP 基底。對比厚而舒展、色彩澎潤。" },
+];
+
 const LOOKS_V3 = [
-  { name:"Rich",  zh:"豐實", dot:C.pink, accentLeft:C.pink, tag:"v3.0 FILMIC", tagC:C.pink,
-    en:"Filmic foundation with weight. Deep shadows, solid midtones, and a rounded highlight rolloff — the image sits grounded and full.",
+  { name:"Rich",  zh:"豐實", dot:G.orange[0], accentLeft:G.orange[0], tag:"v3.0 FILMIC", tagC:G.orange[0],
+    en:"Filmic foundation with weight. Deep shadows, solid midtones, and a rounded highlight rolloff; the image sits grounded and full.",
     zh_desc:"帶有重量的 filmic 基底。深厚的暗部、扎實的中間調、圓潤的高光滾降，讓畫面沉穩飽滿。" },
-  { name:"Mellow", zh:"溫醇", dot:C.teal, accentLeft:C.teal, tag:"v3.0 FILMIC", tagC:C.teal,
-    en:"Filmic foundation with warmth. Soft, buttery dimensional contrast and reined-in highlights — the image feels organic and natural.",
+  { name:"Mellow", zh:"溫醇", dot:G.orange[1], accentLeft:G.orange[1], tag:"v3.0 FILMIC", tagC:G.orange[1],
+    en:"Filmic foundation with warmth. Soft, buttery dimensional contrast and reined-in highlights; the image feels organic and natural.",
     zh_desc:"溫暖的 filmic 基底。柔軟的立體反差、收斂的高光，畫面有機自然。" },
 ];
 
 const LOOKS_V2 = [
-  { name:"DYNAMIC",      zh:"動態 / 預設", dot:C.orange, accentLeft:C.orange,
+  { name:"DYNAMIC",      zh:"動態／預設", dot:G.teal[0], accentLeft:G.teal[0],
     en:"Designed for extreme high-contrast lighting scenarios, drawing on the sensor's maximum dynamic range. While preserving shadow details, it ensures extreme highlights exhibit a soft, smooth rolloff.",
     zh_desc:"專為極端光比場景設計，最大化感光元件的動態範圍。在保留暗部細節的同時，確保極高光區域呈現柔和的過渡滾降。" },
-  { name:"BALANCE",      zh:"平衡",        dot:C.green,  accentLeft:C.green,
+  { name:"BALANCE",      zh:"平衡",        dot:G.teal[1], accentLeft:G.teal[1],
     en:'Delivers uniform colour reproduction and a balanced contrast curve. When a project prioritises "realism," this mode provides the most neutral starting point for your grade.',
     zh_desc:"提供均勻的色彩還原與反差曲線。當專案首重「真實感」時，此模式能提供最中性的調色起點。" },
-  { name:"STANDARD",     zh:"標準",        dot:C.cyan,   accentLeft:C.cyan,
+  { name:"STANDARD",     zh:"標準",        dot:G.teal[2], accentLeft:G.teal[2],
     en:"Universally adaptable to Log footage from almost any camera system. Simulates a standard filmic S-curve, instantly building volume, depth, and rich midtone details within the image.",
     zh_desc:"幾乎能適應所有攝影機型拍出的 Log 畫面。模擬標準的底片感 S 曲線，為畫面建立立體感與深度，豐富的中階層次。" },
-  { name:"HIGH CONTRAST", zh:"高反差",     dot:C.purple, accentLeft:C.purple,
+  { name:"HIGH CONTRAST", zh:"高反差",     dot:G.teal[3], accentLeft:G.teal[3],
     en:"Delivers intense yet controlled visual impact. Further pushes down the black levels for deep, rich shadows while significantly expanding highlight separation — colour harmony maintained throughout.",
     zh_desc:"強烈卻不失控的視覺張力。進一步下壓黑位以產生深邃濃郁的暗部，同時大幅拉開亮部層次，即使反差極大依然穩定鎖住色彩和諧度。" },
 ];
 
+const UPDATE_LOG = [
+  { ver:"v4.0", c:G.pink[0], en_title:"New POP Look Series", zh_title:"全新 POP Look 系列",
+    en:["Bubble: light and graceful.", "Balloon: vivid and full-bodied.",
+        "Ships with the same retuned parameter feel as v3.0.1 / v2.2.1."],
+    zh:["Bubble／澄亮：輕盈柔美", "Balloon／盈潤：鮮明澎潤",
+        "搭載與 v3.0.1／v2.2.1 相同的新版參數手感。"] },
+  { ver:"v3.0.1 / v2.2.1", c:G.orange[0], en_title:"Parameter Feel Retuned", zh_title:"參數手感重整",
+    en:["Exposure: response recalibrated, with a feel closer to a real lens aperture.",
+        "Temperature / Tint: shift response recalibrated.",
+        "3-Band Tonal Control: smoother handovers between shadows, midtones and highlights, keeping the tonal response natural and preserving latitude when exposure is adjusted."],
+    zh:["曝光：調整幅度重新校準，手感更接近實體光圈。",
+        "色溫／色調：偏移幅度重新校準。",
+        "三頻階調控制：暗部／中間調／高光交接更平順，在調整曝光時維持自然的階調響應與寬容度。"] },
+  { ver:"v3.0", c:G.orange[0], en_title:"New FILMIC Look Series", zh_title:"全新 FILMIC Look 系列",
+    en:["Rich: grounded and full.", "Mellow: organic and natural."],
+    zh:["Rich／豐實：沉穩飽滿", "Mellow／溫醇：有機自然"] },
+  { ver:"v2.2", c:G.teal[0], en_title:"Colour Density", zh_title:"色彩密度",
+    en:["Added Vibrance: applies a graded lift by original saturation, with more on flatter areas and less where colour is already saturated. Suited to an overall push without driving saturated regions out of gamut."],
+    zh:["新增 Vibrance／鮮豔度：依原始畫面飽和程度給予不同增量，偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。"] },
+  { ver:"v2.1", c:G.teal[0], en_title:"Dual-Axis White Balance", zh_title:"白平衡雙軸",
+    en:["Added Tint (green ↔ magenta), paired with Temperature (blue ↔ amber) for full white-balance control across both axes.",
+        "All four core Looks fully retuned, with yellow-green hue work to calibrate skin-tone brightness."],
+    zh:["新增色調／綠 ↔ 洋紅軸，與色溫／藍 ↔ 黃軸同步調整畫面白平衡。",
+        "四款核心 Look 全面重整，著重黃綠色相調整，校準膚色亮度。"] },
+  { ver:"v2.0", c:G.teal[0], en_title:"Compute Core", zh_title:"運算核心",
+    en:["Physical Exposure: simulates a real lens aperture.",
+        "Temperature Control: simulates a physical optical filter; clean warm/cool shifts, no mud.",
+        "3-Band Tonal Control: independent control over shadows / midtones / highlights."],
+    zh:["物理級曝光：模擬實體光圈。",
+        "色溫控制：模擬實體光學濾鏡，冷暖偏移乾淨不濁。",
+        "三頻階調控制：暗部／中間調／高光獨立控制。"] },
+];
+
 const PARAMS = [
-  { icon:"●", label:"EXPOSURE",    zh:"曝光",     tag:"2026 NEW",      tagC:C.orange, accentL:C.orange,
+  { icon:"●", label:"EXPOSURE",    zh:"曝光",     tag:"2026.10 UPDATED", tagC:C.orange, accentL:C.orange,
     en:'True photometric "Stops" control. Simulates a physical camera aperture to precisely adjust exposure and recover details without shifting contrast.',
-    zh_desc:"真正的「曝光級數 (Stops)」控制。模擬實體光圈物理運算，精準調整曝光量，保護影像底層反差。", range:"−4 → +4 EV" },
-  { icon:"◆", label:"TEMPERATURE", zh:"色溫",     tag:"v2.0 UPGRADED", tagC:C.cyan,   accentL:C.cyan,
+    zh_desc:"真正的「曝光級數（Stops）」控制。模擬實體光圈物理運算，精準調整曝光量，保護影像底層反差。" },
+  { icon:"◆", label:"TEMPERATURE", zh:"色溫",     tag:"2026.10 UPDATED", tagC:C.cyan,   accentL:C.cyan,
     en:"Optical-style white balance. Shifts the warm/cool vibe precisely while keeping the colours clean and mud-free.",
-    zh_desc:"模擬光學濾鏡的色溫調整。控制畫面的冷暖氣圍，並維持色彩的純淨度。", range:"2000K → 10000K" },
-  { icon:"◇", label:"TINT",        zh:"色調",     tag:"v2.1 NEW",      tagC:C.cyan,   accentL:C.cyan,
+    zh_desc:"模擬光學濾鏡的色溫調整。控制畫面的冷暖氛圍，並維持色彩的純淨度。" },
+  { icon:"◇", label:"TINT",        zh:"色調",     tag:"2026.10 UPDATED", tagC:C.cyan,   accentL:C.cyan,
     en:"Optical-style magenta/green axis correction. Cancels the green/magenta shift common to fluorescent and LED sources.",
-    zh_desc:"模擬光學色片的洋紅-綠軸校正。化解日光燈、LED 等混光現場常見的綠/洋紅偏移。", range:"Magenta ↔ Green" },
+    zh_desc:"模擬光學色片的洋紅-綠軸校正。化解日光燈、LED 等混光現場常見的綠/洋紅偏移。" },
   { icon:"◑", label:"CONTRAST",    zh:"對比",     tag:null, accentL:C.purple,
     en:"Log-native power curve for smooth depth control.",
-    zh_desc:"Log 原生冪函數曲線，提供平滑的影像深度調整。", range:"−100 → +100" },
+    zh_desc:"Log 原生冪函數曲線，提供平滑的影像深度調整。" },
   { icon:"⊘", label:"CONTRAST PIVOT", zh:"對比軸心", tag:null, accentL:"#E8C77A",
     en:"Tonal center alignment tool. Anchors the contrast expansion point to preserve critical midtone details across the dynamic range.",
-    zh_desc:"光度對比軸心設定。定義對比擴張的中心點，在拉開動態範圍時保留中階層次與細節。", range:"0 → 100%" },
+    zh_desc:"光度對比軸心設定。定義對比擴張的中心點，在拉開動態範圍時保留中階層次與細節。" },
   { icon:"⊙", label:"VIBRANCE",    zh:"鮮豔度",   tag:"v2.2 NEW",      tagC:C.green,  accentL:C.green,
     en:"Non-linear saturation control. Gain varies with the saturation of the source image — stronger lift in muted areas, easing off where already saturated. Suited to overall colour density without pushing saturated regions out of range.",
-    zh_desc:"非線性飽和控制。依原始畫面飽和程度給予不同增量——偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。", range:"0 → 100" },
+    zh_desc:"非線性飽和控制。依原始畫面飽和程度給予不同增量——偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。" },
   { icon:"⊕", label:"SATURATION",  zh:"飽和度",   tag:null, accentL:C.green,
     en:"Linear saturation control. A uniform scale across the frame with luminance held constant. Suited to multi-camera matching and precise adjustment.",
-    zh_desc:"線性飽和控制。全畫面等量增減，亮度保持恆定。適合多機位匹配與精準調整。", range:"0 → 200%" },
-  { icon:"☒", label:"SHADOWS / MIDTONES / HIGHLIGHTS", zh:"分區調光", tag:"v2.0 UPGRADED", tagC:C.orange, accentL:C.orange,
-    en:"Independent tonal controls. Isolates lighting regions to separate subjects from the background without complex masking.",
-    zh_desc:"影像分區調控，獨立區分影像亮、中灰與暗部，協助分離主體與背景光影，降低對二次遮罩的依賴。", range:"3-Band" },
+    zh_desc:"線性飽和控制。全畫面等量增減，亮度保持恆定。適合多機位匹配與精準調整。" },
+  { icon:"☒", label:"SHADOWS / MIDTONES / HIGHLIGHTS", zh:"分區調光", tag:"2026.10 UPDATED", tagC:C.orange, accentL:C.orange,
+    en:"Independent tonal controls. Shadows, midtones and highlights are controlled separately through smooth crossover transitions, keeping the tonal response natural and preserving latitude when exposure is adjusted, while reducing reliance on complex secondary masking.",
+    zh_desc:"影像分區調控。透過平滑的過渡區間獨立控制暗部、中間調與高光，在調整曝光時維持自然的階調響應與寬容度，降低對複雜二次遮罩的依賴。" },
 ];
 
 /* ── Primitives ─────────────────────────────────────────── */
@@ -265,7 +314,7 @@ export default function App() {
           <div style={{ margin:"28px 14px 0", borderTop:"1px solid #1e1e1e", paddingTop:20 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, color:"#666",
               letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Version</div>
-            {["Pro Suite","+ Light Engine","+ FILMIC","July 2026"].map((t,i,arr) => (
+            {["Pro Suite v2.2.1","+ Light Engine v2.2.1","+ FILMIC v3.0.1","+ POP v4.0.0","October 2026"].map((t,i,arr) => (
               <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:12,
                 color:i===arr.length-1?"#B07A35":"#888", lineHeight:1.9 }}>{t}</div>
             ))}
@@ -315,29 +364,32 @@ export default function App() {
 
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:14 }}>
               {[
-                { name:"OMNI LOG ENGINE -FILMIC-", badge:"Rich / Mellow", hi:true,
-                  en:"A colour engine built to realise a filmic foundation, letting Log resolve into a full, dimensional image. Wider tonal transitions through the highlights and midtones — a fit for narrative work across formats.",
+                { name:"OMNI LOG ENGINE -POP-", badge:"Bubble / Balloon", c:C.pink,
+                  en:"A colour engine built around stronger colour expression and image depth. The engine reads the colour of each scene: saturated scenes gain wider colour separation, while muted scenes keep their original restraint and balance. A fit for music videos, commercials and narrative work of every kind.",
+                  zh:"以強化色彩表現與畫面層次為核心的色彩引擎。引擎讀取每個場景的色彩狀態：高彩度畫面進一步拉開色彩差異，低彩度畫面則維持原有的克制與平衡。適用於 MV、廣告及各類敘事影像。" },
+                { name:"OMNI LOG ENGINE -FILMIC-", badge:"Rich / Mellow", c:C.orange,
+                  en:"A colour engine built to realise a filmic foundation, letting Log resolve into a full, dimensional image. Wider tonal transitions through the highlights and midtones, a fit for narrative work across formats.",
                   zh:"以實現電影 filmic 基底為目標的色彩引擎，使 Log 畫面風格有型落定。高光與中間調的過渡更寬裕，適用於各類型影片敘事。" },
-                { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", hi:false,
+                { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", c:C.teal,
                   en:<><strong style={{color:C.textHi}}>Includes BOTH Pro &amp; Light:</strong> The complete Offline/Online workflow arsenal. The Pro high-precision engine is engineered for maximum colour fidelity. Recommended for high-end workstations or tasks requiring stringent precision in image detail.</>,
                   zh:"包含 Pro 與 Light 雙引擎：完整的 Offline / Online 工作流程工具庫。Pro 高精度引擎專為最大色彩保真度設計，推薦於高階工作站環境使用。" },
-                { name:"OMNI LOG ENGINE -LIGHT-", badge:"Real-time", hi:false,
+                { name:"OMNI LOG ENGINE -LIGHT-", badge:"Real-time", c:C.teal,
                   en:"The high-performance engine optimised for real-time playback. Ensures fluid operation even on mid-range hardware, massive timelines, or complex grading environments while fully preserving the core visual aesthetic.",
                   zh:"高效能引擎，專為 real-time 運作設計。即使在中階硬體環境、大型專案或複雜場景下，依然保持流暢，同時確立核心色彩轉換。" },
               ].map((v, i) => (
                 <div key={v.name} className="hcard" style={{ background:C.surf,
                   gridColumn: "1/-1",
-                  border:`1px solid ${v.hi?"#3a2800":C.border}`,
-                  borderLeft:`3px solid ${v.hi?C.orange:C.border2}`,
+                  border:`1px solid ${v.c}33`,
+                  borderLeft:`3px solid ${v.c}`,
                   borderRadius:6, padding:"22px 24px" }}>
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:14, gap:8 }}>
                     <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:15, fontWeight:700,
-                      color:v.hi?C.orange:"#E8D88A", textTransform:"uppercase", letterSpacing:"0.08em", lineHeight:1.2 }}>{v.name}</div>
-                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:10,
-                      color:v.hi?C.orange:C.muted,
-                      border:`1px solid ${v.hi?"#3a2800":C.border2}`,
-                      background:v.hi?"#120d00":"#0a0a0a",
-                      padding:"2px 9px", borderRadius:3, whiteSpace:"nowrap", flexShrink:0 }}>{v.badge}</span>
+                      color:v.c, textTransform:"uppercase", letterSpacing:"0.08em", lineHeight:1.2 }}>{v.name}</div>
+                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:12,
+                      color:v.c,
+                      border:`1px solid ${v.c}44`,
+                      background:`${v.c}11`,
+                      padding:"4px 12px", borderRadius:3, whiteSpace:"nowrap", flexShrink:0 }}>{v.badge}</span>
                   </div>
                   <p style={{ fontSize:16, color:C.textMed, lineHeight:1.7, marginBottom:10 }}>{v.en}</p>
                   <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{v.zh}</p>
@@ -477,8 +529,31 @@ export default function App() {
 
             <SubLabel en="A. TARGET LOOK SELECTION" zh="目標風格選擇" big />
 
+            {/* v4 POP — newest series */}
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.pink[0],
+              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
+              POP SERIES · v4.0
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
+              {LOOKS_V4.map(l => (
+                <Card key={l.name} accentLeft={l.accentLeft} style={{ marginBottom:0 }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
+                    <div style={{ width:10, height:10, borderRadius:"50%", background:l.dot, flexShrink:0 }} />
+                    <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
+                      color:C.textHi, textTransform:"uppercase", letterSpacing:"0.06em" }}>{l.name}</span>
+                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜{l.zh}</span>
+                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:l.tagC,
+                      border:`1px solid ${l.tagC}44`, background:`${l.tagC}11`,
+                      padding:"4px 12px", borderRadius:3, letterSpacing:"0.1em", whiteSpace:"nowrap", marginLeft:"auto" }}>{l.tag}</span>
+                  </div>
+                  <p style={{ fontSize:16, color:C.textMed, lineHeight:1.72, marginBottom:7 }}>{l.en}</p>
+                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{l.zh_desc}</p>
+                </Card>
+              ))}
+            </div>
+
             {/* v3 FILMIC — hero set */}
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:C.pink,
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.orange[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
               FILMIC SERIES · v3.0
             </div>
@@ -489,10 +564,10 @@ export default function App() {
                     <div style={{ width:10, height:10, borderRadius:"50%", background:l.dot, flexShrink:0 }} />
                     <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
                       color:C.textHi, textTransform:"uppercase", letterSpacing:"0.06em" }}>{l.name}</span>
-                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜ {l.zh}</span>
-                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:9, color:l.tagC,
+                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜{l.zh}</span>
+                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:l.tagC,
                       border:`1px solid ${l.tagC}44`, background:`${l.tagC}11`,
-                      padding:"2px 8px", borderRadius:3, letterSpacing:"0.1em", whiteSpace:"nowrap", marginLeft:"auto" }}>{l.tag}</span>
+                      padding:"4px 12px", borderRadius:3, letterSpacing:"0.1em", whiteSpace:"nowrap", marginLeft:"auto" }}>{l.tag}</span>
                   </div>
                   <p style={{ fontSize:16, color:C.textMed, lineHeight:1.72, marginBottom:7 }}>{l.en}</p>
                   <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{l.zh_desc}</p>
@@ -501,7 +576,7 @@ export default function App() {
             </div>
 
             {/* v2.2 — included Look library */}
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:C.orange,
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.teal[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
               LOOK LIBRARY · v2.2
             </div>
@@ -512,7 +587,7 @@ export default function App() {
                     <div style={{ width:10, height:10, borderRadius:"50%", background:l.dot, flexShrink:0 }} />
                     <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
                       color:C.textHi, textTransform:"uppercase", letterSpacing:"0.06em" }}>{l.name}</span>
-                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜ {l.zh}</span>
+                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜{l.zh}</span>
                   </div>
                   <p style={{ fontSize:16, color:C.textMed, lineHeight:1.72, marginBottom:7 }}>{l.en}</p>
                   <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{l.zh_desc}</p>
@@ -530,14 +605,14 @@ export default function App() {
                       <div>
                         <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
                           color:C.textHi, textTransform:"uppercase", letterSpacing:"0.06em", lineHeight:1.2 }}>{p.label}</div>
-                        <div style={{ fontSize:14, color:C.textZh, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>｜ {p.zh}</div>
+                        <div style={{ fontSize:14, color:C.textZh, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>｜{p.zh}</div>
                       </div>
                     </div>
                     <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:5, flexShrink:0, marginLeft:10 }}>
                       {p.tag && (
-                        <span style={{ fontFamily:"'DM Mono',monospace", fontSize:9, color:p.tagC,
+                        <span style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:p.tagC,
                           border:`1px solid ${p.tagC}44`, background:`${p.tagC}11`,
-                          padding:"2px 8px", borderRadius:3, letterSpacing:"0.1em", whiteSpace:"nowrap" }}>{p.tag}</span>
+                          padding:"4px 12px", borderRadius:3, letterSpacing:"0.1em", whiteSpace:"nowrap" }}>{p.tag}</span>
                       )}
                     </div>
                   </div>
@@ -605,7 +680,7 @@ export default function App() {
                     <div style={{ display:"flex", alignItems:"baseline", gap:10, marginBottom:12 }}>
                       <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:17, fontWeight:700,
                         color:s.color, textTransform:"uppercase", letterSpacing:"0.07em" }}>{s.title}</span>
-                      <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜ {s.zh_title}</span>
+                      <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜{s.zh_title}</span>
                     </div>
                     <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:9 }}>{s.en}</p>
                     <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{s.zh}</p>
@@ -622,7 +697,7 @@ export default function App() {
                 {[
                   { label:"Raw Log",        sub:"原始素材",            hi:false },
                   null,
-                  { label:"Power Window",   sub:"區域遮罩 (optional)", hi:false },
+                  { label:"Power Window",   sub:"區域遮罩（optional）", hi:false },
                   null,
                   { label:"Omni Log Engine",sub:"引擎核心",            hi:true  },
                   null,
@@ -667,10 +742,48 @@ export default function App() {
             </div>
           </section>
 
+          {/* Engine Update Log */}
+          <section style={{ marginBottom:56 }}>
+            <span style={{ display:"inline-block", border:"1px solid #2a2a2a", color:"#555",
+              fontSize:10, fontFamily:"'DM Mono',monospace", letterSpacing:"0.13em",
+              padding:"2px 8px", borderRadius:3, marginBottom:11 }}>CHANGELOG</span>
+            <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(22px,3.5vw,38px)",
+              fontWeight:900, color:"#00B2A9", textTransform:"uppercase", letterSpacing:"0.03em",
+              lineHeight:1.05, marginBottom:4 }}>Engine Update Log</div>
+            <div style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:15,
+              color:"#DEDEDE", marginBottom:22 }}>歷代引擎更新日誌</div>
+            <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
+              {UPDATE_LOG.map(u => (
+                <Card key={u.ver} accentLeft={u.c}>
+                  <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:10, marginBottom:12 }}>
+                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:u.c,
+                      border:`1px solid ${u.c}44`, background:`${u.c}11`,
+                      padding:"4px 12px", borderRadius:3, letterSpacing:"0.1em", whiteSpace:"nowrap" }}>{u.ver}</span>
+                    <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:17, fontWeight:700,
+                      color:C.textHi, letterSpacing:"0.02em" }}>{u.en_title}</span>
+                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜{u.zh_title}</span>
+                  </div>
+                  {u.en.map((t,i) => (
+                    <div key={"en"+i} style={{ display:"flex", gap:8, fontSize:15, color:C.textMed, lineHeight:1.75, marginBottom:4 }}>
+                      <span style={{ color:u.c, flexShrink:0 }}>•</span><span>{t}</span>
+                    </div>
+                  ))}
+                  <div style={{ height:8 }} />
+                  {u.zh.map((t,i) => (
+                    <div key={"zh"+i} style={{ display:"flex", gap:8, fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:2,
+                      fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
+                      <span style={{ color:u.c, flexShrink:0 }}>•</span><span>{t}</span>
+                    </div>
+                  ))}
+                </Card>
+              ))}
+            </div>
+          </section>
+
           {/* Footer */}
           <footer style={{ borderTop:"1px solid #1e1e1e", paddingTop:28 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#333" }}>
-              User Manual · July 2026</div>
+              User Manual · October 2026</div>
           </footer>
 
         </main>
