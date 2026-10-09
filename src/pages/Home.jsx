@@ -13,7 +13,7 @@ const PRODUCTS = [
     version: 'v4.0',
     desc: 'A high-precision Log normalisation engine utilising advanced floating-point math. It ensures your sensor\'s dynamic range remains intact, creating a solid core for cinematic colour grading.',
     zh: '高精度 Log 正規化引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎。',
-    includes: ['POP', 'FILMIC', 'Pro Suite', 'Light Engine'],
+    includes: ['POP', 'FILMIC', 'NANO'],
     platforms: ['Windows', 'macOS', 'iPadOS'],
   },
   // ── 複製以上物件來新增 Engine ────────────────────────────
@@ -41,9 +41,9 @@ export default function Home() {
   const navigate = useNavigate()
 
   return (
-    <div style={{ background: C.bg, minHeight: '100vh', color: C.textMed, fontFamily: "'DM Sans','Noto Sans TC',sans-serif" }}>
+    <div style={{ background: C.bg, minHeight: '100vh', color: C.textMed, fontFamily: "'Rubik','Noto Sans TC',sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         .product-card { transition: border-color 0.2s, transform 0.2s, background 0.2s; cursor: pointer; }
         .product-card:hover { transform: translateY(-3px); border-color: var(--ac); background: #101010; }
@@ -66,20 +66,20 @@ export default function Home() {
             Professional Colour Tools for Creative Workflows
           </div>
           <h1 style={{
-            fontFamily: "'Barlow Condensed',sans-serif",
-            fontSize: 'clamp(36px,6vw,60px)', fontWeight: 800,
+            fontFamily: "'Rubik',sans-serif",
+            fontSize: 'clamp(32px,6vw,60px)', fontWeight: 900,
             color: C.textHi, textTransform: 'uppercase',
             letterSpacing: '0.02em', lineHeight: 1.0, marginBottom: 6,
           }}>Sokoban Film Lab</h1>
           <div style={{
-            fontFamily: "'Barlow Condensed',sans-serif",
+            fontFamily: "'Rubik',sans-serif",
             fontSize: 'clamp(16px,2.5vw,22px)', fontWeight: 400,
             color: '#FF8200', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 20,
           }}>User Manuals</div>
           <p style={{ fontSize: 16, color: C.textMed, lineHeight: 1.75, maxWidth: 560 }}>
             Select a product below to view its full user manual, installation guide, and parameter reference.
           </p>
-          <p style={{ fontSize: 14, color: C.textZh, lineHeight: 1.85, maxWidth: 520, marginTop: 6, fontFamily: "'DM Sans','Noto Sans TC',sans-serif" }}>
+          <p style={{ fontSize: 14, color: C.textZh, lineHeight: 1.85, maxWidth: 520, marginTop: 6, fontFamily: "'Rubik','Noto Sans TC',sans-serif" }}>
             選擇下方產品，查看完整使用說明、安裝指南與參數說明。
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function Home() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16, gap: 16, flexWrap: 'wrap' }}>
                 <div>
                   <div style={{
-                    fontFamily: "'Barlow Condensed',sans-serif",
+                    fontFamily: "'Rubik',sans-serif",
                     fontSize: 22, fontWeight: 800, color: p.nameColor,
                     textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.1, marginBottom: 4,
                   }}>{p.name}</div>
@@ -135,7 +135,7 @@ export default function Home() {
               </div>
 
               <p style={{ fontSize: 15, color: C.textMed, lineHeight: 1.75, marginBottom: 6 }}>{p.desc}</p>
-              <p style={{ fontSize: 13, color: C.textZh, lineHeight: 1.85, marginBottom: 18, fontFamily: "'DM Sans','Noto Sans TC',sans-serif" }}>{p.zh}</p>
+              <p style={{ fontSize: 13, color: C.textZh, lineHeight: 1.85, marginBottom: 18, fontFamily: "'Rubik','Noto Sans TC',sans-serif" }}>{p.zh}</p>
 
               <div style={{ display: 'flex', alignItems: 'center', borderTop: '1px solid #1e1e1e', paddingTop: 14 }}>
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>

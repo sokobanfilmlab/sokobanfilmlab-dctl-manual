@@ -31,7 +31,7 @@ const C = {
   muted:   "#DEDEDE",
 };
 
-/* 系列漸層：POP 桃紅／FILMIC 橘／v2.2 青綠（Look 卡圓點與左框依序取色） */
+/* 系列漸層：POP 桃紅／FILMIC 橘／NANO 青綠（Look 卡圓點與左框依序取色） */
 const G = {
   pink:   ["#EF426F", "#F47C99"],
   orange: ["#FF8200", "#FFAA55"],
@@ -82,16 +82,18 @@ const LOOKS_V2 = [
 const UPDATE_LOG = [
   { ver:"v4.0", c:G.pink[0], en_title:"New POP Look Series", zh_title:"全新 POP Look 系列",
     en:["Bubble: light and graceful.", "Balloon: vivid and full-bodied.",
-        "Ships with the same retuned parameter feel as v3.0.1 / v2.2.1."],
+        "Ships with the same retuned parameter feel as v3.0.1 / v2.3."],
     zh:["Bubble／澄亮：輕盈柔美", "Balloon／盈潤：鮮明澎潤",
-        "搭載與 v3.0.1／v2.2.1 相同的新版參數手感。"] },
-  { ver:"v3.0.1 / v2.2.1", c:G.orange[0], en_title:"Parameter Feel Retuned", zh_title:"參數手感重整",
+        "搭載與 v3.0.1／v2.3 相同的新版參數手感。"] },
+  { ver:"v3.0.1 / v2.3", c:G.orange[0], en_title:"Parameter Feel Retuned", zh_title:"參數手感重整",
     en:["Exposure: response recalibrated, with a feel closer to a real lens aperture.",
         "Temperature / Tint: shift response recalibrated.",
-        "3-Band Tonal Control: smoother handovers between shadows, midtones and highlights, keeping the tonal response natural and preserving latitude when exposure is adjusted."],
+        "3-Band Tonal Control: smoother handovers between shadows, midtones and highlights, keeping the tonal response natural and preserving latitude when exposure is adjusted.",
+        "Light engine renamed NANO: a lean processing load with all four Looks and the full set of controls."],
     zh:["曝光：調整幅度重新校準，手感更接近實體光圈。",
         "色溫／色調：偏移幅度重新校準。",
-        "三頻階調控制：暗部／中間調／高光交接更平順，在調整曝光時維持自然的階調響應與寬容度。"] },
+        "三頻階調控制：暗部／中間調／高光交接更平順，在調整曝光時維持自然的階調響應與寬容度。",
+        "Light 引擎更名為 NANO：運算輕巧，四款 Look 與全套參數一應俱全。"] },
   { ver:"v3.0", c:G.orange[0], en_title:"New FILMIC Look Series", zh_title:"全新 FILMIC Look 系列",
     en:["Rich: grounded and full.", "Mellow: organic and natural."],
     zh:["Rich／豐實：沉穩飽滿", "Mellow／溫醇：有機自然"] },
@@ -283,9 +285,9 @@ export default function App() {
           borderBottom:"1px solid #2a2a2a", zIndex:99, padding:12 }}>
           {NAV.map(n => (
             <button key={n.id} className={`nbtn${active===n.id?" act":""}`} onClick={()=>go(n.id)}>
-              <span style={{ fontFamily:"'DM Mono',monospace", fontSize:13,
-                color:active===n.id?C.orange:C.muted, minWidth:52 }}>{n.label}</span>
-              <span style={{ fontSize:13, color:active===n.id?C.textMed:"#555" }}>{n.zh}</span>
+              <span style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500,
+                color:active===n.id?C.orange:C.textMed, minWidth:60 }}>{n.label}</span>
+              <span style={{ fontSize:14, color:active===n.id?C.textHi:"#BDBDBD" }}>{n.zh}</span>
             </button>
           ))}
         </div>
@@ -294,29 +296,29 @@ export default function App() {
       <div style={{ display:"flex", maxWidth:1240, margin:"0 auto" }}>
 
         {/* SIDEBAR */}
-        <aside className="sbar" style={{ width:200, flexShrink:0, position:"sticky", top:60,
+        <aside className="sbar" style={{ width:220, flexShrink:0, position:"sticky", top:60,
           height:"calc(100vh - 60px)", overflowY:"auto", padding:"28px 12px",
           borderRight:"1px solid #1e1e1e" }}>
-          <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, color:"#666",
-            letterSpacing:"0.18em", textTransform:"uppercase", padding:"0 14px 14px" }}>Navigation</div>
+          <div style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:"#9A9A9A",
+            letterSpacing:"0.16em", textTransform:"uppercase", padding:"0 14px 14px" }}>Navigation</div>
           {NAV.map(n => (
             <button key={n.id} className={`nbtn${active===n.id?" act":""}`} onClick={()=>go(n.id)}>
               <div style={{ width:2, height:30, borderRadius:2,
                 background:active===n.id?C.orange:"transparent", flexShrink:0, transition:"background 0.2s" }} />
               <div>
-                <div style={{ fontFamily:"'DM Mono',monospace", fontSize:13,
-                  color:active===n.id?C.orange:"#aaa", fontWeight:500 }}>{n.label}</div>
-                <div style={{ fontSize:12, color:active===n.id?C.textMed:"#888",
+                <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15,
+                  color:active===n.id?C.orange:C.textMed, fontWeight:500 }}>{n.label}</div>
+                <div style={{ fontSize:14, color:active===n.id?C.textHi:"#BDBDBD", marginTop:2,
                   fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{n.zh}</div>
               </div>
             </button>
           ))}
           <div style={{ margin:"28px 14px 0", borderTop:"1px solid #1e1e1e", paddingTop:20 }}>
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, color:"#666",
-              letterSpacing:"0.12em", textTransform:"uppercase", marginBottom:8 }}>Version</div>
-            {["Pro Suite v2.2.1","+ Light Engine v2.2.1","+ FILMIC v3.0.1","+ POP v4.0.0","October 2026"].map((t,i,arr) => (
-              <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:12,
-                color:i===arr.length-1?"#B07A35":"#888", lineHeight:1.9 }}>{t}</div>
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:"#9A9A9A",
+              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:10 }}>Version</div>
+            {["POP v4.0.0","FILMIC v3.0.1","NANO v2.3.0","October 2026"].map((t,i,arr) => (
+              <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:14, fontWeight:500,
+                color:i===arr.length-1?C.inline:"#CFCFCF", lineHeight:2 }}>{t}</div>
             ))}
           </div>
         </aside>
@@ -370,12 +372,9 @@ export default function App() {
                 { name:"OMNI LOG ENGINE -FILMIC-", badge:"Rich / Mellow", c:C.orange,
                   en:"A colour engine built to realise a filmic foundation, letting Log resolve into a full, dimensional image. Wider tonal transitions through the highlights and midtones, a fit for narrative work across formats.",
                   zh:"以實現電影 filmic 基底為目標的色彩引擎，使 Log 畫面風格有型落定。高光與中間調的過渡更寬裕，適用於各類型影片敘事。" },
-                { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", c:C.teal,
-                  en:<><strong style={{color:C.textHi}}>Includes BOTH Pro &amp; Light:</strong> The complete Offline/Online workflow arsenal. The Pro high-precision engine is engineered for maximum colour fidelity. Recommended for high-end workstations or tasks requiring stringent precision in image detail.</>,
-                  zh:"包含 Pro 與 Light 雙引擎：完整的 Offline / Online 工作流程工具庫。Pro 高精度引擎專為最大色彩保真度設計，推薦於高階工作站環境使用。" },
-                { name:"OMNI LOG ENGINE -LIGHT-", badge:"Real-time", c:C.teal,
-                  en:"The high-performance engine optimised for real-time playback. Ensures fluid operation even on mid-range hardware, massive timelines, or complex grading environments while fully preserving the core visual aesthetic.",
-                  zh:"高效能引擎，專為 real-time 運作設計。即使在中階硬體環境、大型專案或複雜場景下，依然保持流暢，同時確立核心色彩轉換。" },
+                { name:"OMNI LOG ENGINE -NANO-", badge:"Real-time", c:C.teal,
+                  en:"A colour engine built around real-time playback efficiency. A lean processing load with all four Looks and the full set of controls; playback stays fluid even on mid-range hardware, large timelines and complex grades.",
+                  zh:"以即時播放效率為核心的色彩引擎。運算輕巧，四款 Look 與全套參數一應俱全，即使在中階硬體、大型專案或複雜調光環境下依然流暢。" },
               ].map((v, i) => (
                 <div key={v.name} className="hcard" style={{ background:C.surf,
                   gridColumn: "1/-1",
@@ -575,10 +574,10 @@ export default function App() {
               ))}
             </div>
 
-            {/* v2.2 — included Look library */}
+            {/* v2.3 NANO — Look series */}
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.teal[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
-              LOOK LIBRARY · v2.2
+              NANO SERIES · v2.3
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:36 }}>
               {LOOKS_V2.map(l => (
