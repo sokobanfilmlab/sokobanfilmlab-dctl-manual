@@ -56,10 +56,10 @@ const LOOKS_V4 = [
 ];
 
 const LOOKS_V3 = [
-  { name:"Rich",  zh:"豐實", dot:G.orange[0], accentLeft:G.orange[0], tag:"v3.0 FILMIC", tagC:G.orange[0],
+  { name:"Rich",  zh:"豐實", dot:G.orange[0], accentLeft:G.orange[0], tag:"v3.1 FILMIC", tagC:G.orange[0],
     en:"Filmic foundation with weight. Deep shadows, solid midtones, and a rounded highlight rolloff; the image sits grounded and full.",
     zh_desc:"帶有重量的 filmic 基底。深厚的暗部、扎實的中間調、圓潤的高光滾降，讓畫面沉穩飽滿。" },
-  { name:"Mellow", zh:"溫醇", dot:G.orange[1], accentLeft:G.orange[1], tag:"v3.0 FILMIC", tagC:G.orange[1],
+  { name:"Mellow", zh:"溫醇", dot:G.orange[1], accentLeft:G.orange[1], tag:"v3.1 FILMIC", tagC:G.orange[1],
     en:"Filmic foundation with warmth. Soft, buttery dimensional contrast and reined-in highlights; the image feels organic and natural.",
     zh_desc:"溫暖的 filmic 基底。柔軟的立體反差、收斂的高光，畫面有機自然。" },
 ];
@@ -82,18 +82,20 @@ const LOOKS_V2 = [
 const UPDATE_LOG = [
   { ver:"v4.0", c:G.pink[0], en_title:"New POP Look Series", zh_title:"全新 POP Look 系列",
     en:["Bubble: light and graceful.", "Balloon: vivid and full-bodied.",
-        "Ships with the same retuned parameter feel as v3.0.1 / v2.3."],
+        "Ships with the same retuned parameter feel as v3.1 / v2.3."],
     zh:["Bubble／澄亮：輕盈柔美", "Balloon／盈潤：鮮明澎潤",
-        "搭載與 v3.0.1／v2.3 相同的新版參數手感。"] },
-  { ver:"v3.0.1 / v2.3", c:G.orange[0], en_title:"Parameter Feel Retuned", zh_title:"參數手感重整",
+        "搭載與 v3.1／v2.3 相同的新版參數手感。"] },
+  { ver:"v3.1 / v2.3", c:G.orange[0], en_title:"Parameter Feel Retuned", zh_title:"參數手感重整",
     en:["Exposure: response recalibrated, with a feel closer to a real lens aperture.",
         "Temperature / Tint: shift response recalibrated.",
-        "3-Band Tonal Control: smoother handovers between shadows, midtones and highlights, keeping the tonal response natural and preserving latitude when exposure is adjusted.",
-        "Light engine renamed NANO: a lean processing load with all four Looks and the full set of controls."],
+        "3-Band Tonal Control: smoother tonal transitions across highlights, midtones and shadows, now with individual R / G / B controls.",
+        "Rich / Mellow: greater Look latitude, with more room to shape the image.",
+        "Pro Suite and Light merged into NANO: a lean processing load, with all four Looks suited to on-set monitoring and lightweight productions."],
     zh:["曝光：調整幅度重新校準，手感更接近實體光圈。",
         "色溫／色調：偏移幅度重新校準。",
-        "三頻階調控制：暗部／中間調／高光交接更平順，在調整曝光時維持自然的階調響應與寬容度。",
-        "Light 引擎更名為 NANO：運算輕巧，四款 Look 與全套參數一應俱全。"] },
+        "三頻階調控制：高光／中間調／暗部的層次過渡更平順，並新增 R／G／B 分色調整。",
+        "Rich／Mellow：Look 寬容度提升，調整影像更靈活。",
+        "Pro Suite 與 Light 整併為 NANO：運算輕巧，四款 Look 適用於現場監看與輕量製作。"] },
   { ver:"v3.0", c:G.orange[0], en_title:"New FILMIC Look Series", zh_title:"全新 FILMIC Look 系列",
     en:["Rich: grounded and full.", "Mellow: organic and natural."],
     zh:["Rich／豐實：沉穩飽滿", "Mellow／溫醇：有機自然"] },
@@ -130,15 +132,15 @@ const PARAMS = [
   { icon:"⊘", label:"CONTRAST PIVOT", zh:"對比軸心", tag:null, accentL:"#E8C77A",
     en:"Tonal center alignment tool. Anchors the contrast expansion point to preserve critical midtone details across the dynamic range.",
     zh_desc:"光度對比軸心設定。定義對比擴張的中心點，在拉開動態範圍時保留中階層次與細節。" },
-  { icon:"⊙", label:"VIBRANCE",    zh:"鮮豔度",   tag:"v2.2 NEW",      tagC:C.green,  accentL:C.green,
-    en:"Non-linear saturation control. Gain varies with the saturation of the source image — stronger lift in muted areas, easing off where already saturated. Suited to overall colour density without pushing saturated regions out of range.",
-    zh_desc:"非線性飽和控制。依原始畫面飽和程度給予不同增量——偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。" },
   { icon:"⊕", label:"SATURATION",  zh:"飽和度",   tag:null, accentL:C.green,
     en:"Linear saturation control. A uniform scale across the frame with luminance held constant. Suited to multi-camera matching and precise adjustment.",
     zh_desc:"線性飽和控制。全畫面等量增減，亮度保持恆定。適合多機位匹配與精準調整。" },
-  { icon:"☒", label:"SHADOWS / MIDTONES / HIGHLIGHTS", zh:"分區調光", tag:"2026.10 UPDATED", tagC:C.orange, accentL:C.orange,
-    en:"Independent tonal controls. Shadows, midtones and highlights are controlled separately through smooth crossover transitions, keeping the tonal response natural and preserving latitude when exposure is adjusted, while reducing reliance on complex secondary masking.",
-    zh_desc:"影像分區調控。透過平滑的過渡區間獨立控制暗部、中間調與高光，在調整曝光時維持自然的階調響應與寬容度，降低對複雜二次遮罩的依賴。" },
+  { icon:"⊙", label:"VIBRANCE",    zh:"鮮豔度",   tag:"v2.2 NEW",      tagC:C.green,  accentL:C.green,
+    en:"Non-linear saturation control. Gain varies with the saturation of the source image — stronger lift in muted areas, easing off where already saturated. Suited to overall colour density without pushing saturated regions out of range.",
+    zh_desc:"非線性飽和控制。依原始畫面飽和程度給予不同增量——偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。" },
+  { icon:"☒", label:"HIGHLIGHTS / MIDTONES / SHADOWS", zh:"分區調光", tag:"2026.10 UPDATED", tagC:C.orange, accentL:C.orange,
+    en:"Independent tonal controls. Highlights, midtones and shadows are controlled separately through smooth crossover transitions, keeping the tonal response natural and preserving latitude when exposure is adjusted. Each zone has a Master control plus individual R / G / B controls for colour balance within the zone, reducing reliance on complex secondary masking.",
+    zh_desc:"影像分區調控。透過平滑的過渡區間獨立控制高光、中間調與暗部，在調整曝光時維持自然的階調響應與寬容度。每區皆有 Master 整體調整與 R／G／B 分色調整，降低對複雜二次遮罩的依賴。" },
 ];
 
 /* ── Primitives ─────────────────────────────────────────── */
@@ -316,7 +318,7 @@ export default function App() {
           <div style={{ margin:"28px 14px 0", borderTop:"1px solid #1e1e1e", paddingTop:20 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:"#9A9A9A",
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:10 }}>Version</div>
-            {["POP v4.0.0","FILMIC v3.0.1","NANO v2.3.0","October 2026"].map((t,i,arr) => (
+            {["POP v4.0.0","FILMIC v3.1.0","NANO v2.3.0","October 2026"].map((t,i,arr) => (
               <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:14, fontWeight:500,
                 color:i===arr.length-1?C.inline:"#CFCFCF", lineHeight:2 }}>{t}</div>
             ))}
@@ -554,7 +556,7 @@ export default function App() {
             {/* v3 FILMIC — hero set */}
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.orange[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
-              FILMIC SERIES · v3.0
+              FILMIC SERIES · v3.1
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
               {LOOKS_V3.map(l => (
@@ -665,8 +667,8 @@ export default function App() {
                 en:<>Position the <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.inline}}>DCTL</strong> from the <strong style={{color:C.inline}}>Open FX</strong> library to serve as your primary normalization stage, ensuring it processes pure, original Log data.</>,
                 zh:<>將 <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> <strong style={{color:C.inline}}>DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.inline}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
               { num:"02", title:"PRIMARY BALANCING",    zh_title:"基礎色彩校正平衡",   color:C.green,
-                en:<>Prioritise using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Tint, Contrast, Vibrance, Saturation,</strong> and <strong style={{color:C.green}}>Shadows / Midtones / Highlights</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
-                zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、色調、對比、鮮豔度、飽和度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
+                en:<>Prioritise using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Tint, Contrast, Saturation, Vibrance,</strong> and <strong style={{color:C.green}}>Highlights / Midtones / Shadows</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
+                zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、色調、對比、飽和度、鮮豔度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
               { num:"03", title:"FLEXIBLE NODE PIPELINE", zh_title:"靈活的 NODE 創意結構", color:C.cyan,
                 en:<>The engine integrates seamlessly into your node tree. You can apply simple <strong style={{color:C.cyan}}>Power Windows</strong> in nodes prior to the engine to adjust uneven raw Log lighting. After the engine, the high-precision normalised image provides a clean foundation for advanced secondary grading, such as <strong style={{color:C.cyan}}>Color Slice</strong> or pulling <strong style={{color:C.cyan}}>precise keys and mattes</strong>.</>,
                 zh:<>引擎能無縫融入節點結構。可以先在引擎前方的節點，加入區域遮罩 <strong style={{color:C.cyan}}>Power Window</strong> 預先調整原始 Log 畫面的光影分布；轉換後的高精度畫面，將為後續的<strong style={{color:C.cyan}}>色彩分割 Color Slice</strong> 或精確的<strong style={{color:C.cyan}}>選色去背 Key / Matte</strong> 提供最乾淨的次級調光基底。</> },
