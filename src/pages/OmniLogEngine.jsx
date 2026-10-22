@@ -31,8 +31,9 @@ const C = {
   muted:   "#DEDEDE",
 };
 
-/* 系列漸層：FILMIC 橘／v2.2 青綠（Look 卡圓點與左框依序取色） */
+/* 系列漸層：POP 桃紅／FILMIC 橘／NANO 青綠（Look 卡圓點與左框依序取色） */
 const G = {
+  pink:   ["#EF426F", "#F47C99"],
   orange: ["#FF8200", "#FFAA55"],
   teal:   ["#00B2A9", "#33C1B9", "#66D0CA", "#99DFDB"],
 };
@@ -45,11 +46,20 @@ const NAV = [
   { id:"part4", label:"Part 4",    zh:"Workflow" },
 ];
 
+const LOOKS_V4 = [
+  { name:"Bubble", zh:"澄亮", dot:G.pink[0], accentLeft:G.pink[0], tag:"v4.0 POP", tagC:G.pink[0],
+    en:"POP foundation with clarity. Gentle contrast, a soft highlight rolloff, and cleanly separated colours; the image feels light and clean.",
+    zh_desc:"明亮清透的 POP 基底。對比溫和柔美、色彩輕盈。" },
+  { name:"Balloon", zh:"盈潤", dot:G.pink[1], accentLeft:G.pink[1], tag:"v4.0 POP", tagC:G.pink[1],
+    en:"POP foundation with volume. Fuller contrast, open highlights, and dense colour; the image feels soft yet dimensional.",
+    zh_desc:"鮮明有型的 POP 基底。對比厚而舒展、色彩澎潤。" },
+];
+
 const LOOKS_V3 = [
-  { name:"Rich",  zh:"豐實", dot:G.orange[0], accentLeft:G.orange[0], tag:"v3.0 FILMIC", tagC:G.orange[0],
+  { name:"Rich",  zh:"豐實", dot:G.orange[0], accentLeft:G.orange[0], tag:"v3.1 FILMIC", tagC:G.orange[0],
     en:"Filmic foundation with weight. Deep shadows, solid midtones, and a rounded highlight rolloff; the image sits grounded and full.",
     zh_desc:"帶有重量的 filmic 基底。深厚的暗部、扎實的中間調、圓潤的高光滾降，讓畫面沉穩飽滿。" },
-  { name:"Mellow", zh:"溫醇", dot:G.orange[1], accentLeft:G.orange[1], tag:"v3.0 FILMIC", tagC:G.orange[1],
+  { name:"Mellow", zh:"溫醇", dot:G.orange[1], accentLeft:G.orange[1], tag:"v3.1 FILMIC", tagC:G.orange[1],
     en:"Filmic foundation with warmth. Soft, buttery dimensional contrast and reined-in highlights; the image feels organic and natural.",
     zh_desc:"溫暖的 filmic 基底。柔軟的立體反差、收斂的高光，畫面有機自然。" },
 ];
@@ -70,6 +80,22 @@ const LOOKS_V2 = [
 ];
 
 const UPDATE_LOG = [
+  { ver:"v4.0", c:G.pink[0], en_title:"New POP Look Series", zh_title:"全新 POP Look 系列",
+    en:["Bubble: light and graceful.", "Balloon: vivid and full-bodied.",
+        "Ships with the same retuned parameter feel as v3.1 / v2.3."],
+    zh:["Bubble／澄亮：輕盈柔美", "Balloon／盈潤：鮮明澎潤",
+        "搭載與 v3.1／v2.3 相同的新版參數手感。"] },
+  { ver:"v3.1 / v2.3", c:G.orange[0], en_title:"Parameter Feel Retuned", zh_title:"參數手感重整",
+    en:["Exposure: response recalibrated, with a feel closer to a real lens aperture.",
+        "Temperature / Tint: shift response recalibrated.",
+        "3-Band Tonal Control: smoother tonal transitions across highlights, midtones and shadows, now with individual R / G / B controls.",
+        "Rich / Mellow: greater Look latitude, with more room to shape the image.",
+        "Pro Suite and Light merged into NANO: a lean processing load, with all four Looks suited to on-set monitoring and lightweight productions."],
+    zh:["曝光：調整幅度重新校準，手感更接近實體光圈。",
+        "色溫／色調：偏移幅度重新校準。",
+        "三頻階調控制：高光／中間調／暗部的層次過渡更平順，並新增 R／G／B 分色調整。",
+        "Rich／Mellow：Look 寬容度提升，調整影像更靈活。",
+        "Pro Suite 與 Light 整併為 NANO：運算輕巧，四款 Look 適用於現場監看與輕量製作。"] },
   { ver:"v3.0", c:G.orange[0], en_title:"New FILMIC Look Series", zh_title:"全新 FILMIC Look 系列",
     en:["Rich: grounded and full.", "Mellow: organic and natural."],
     zh:["Rich／豐實：沉穩飽滿", "Mellow／溫醇：有機自然"] },
@@ -91,13 +117,13 @@ const UPDATE_LOG = [
 ];
 
 const PARAMS = [
-  { icon:"●", label:"EXPOSURE",    zh:"曝光",     tag:"2026 NEW",      tagC:C.orange, accentL:C.orange,
+  { icon:"●", label:"EXPOSURE",    zh:"曝光",     tag:"2026.10 UPDATED", tagC:C.orange, accentL:C.orange,
     en:'True photometric "Stops" control. Simulates a physical camera aperture to precisely adjust exposure and recover details without shifting contrast.',
     zh_desc:"真正的「曝光級數（Stops）」控制。模擬實體光圈物理運算，精準調整曝光量，保護影像底層反差。" },
-  { icon:"◆", label:"TEMPERATURE", zh:"色溫",     tag:"v2.0 UPGRADED", tagC:C.cyan,   accentL:C.cyan,
+  { icon:"◆", label:"TEMPERATURE", zh:"色溫",     tag:"2026.10 UPDATED", tagC:C.cyan,   accentL:C.cyan,
     en:"Optical-style white balance. Shifts the warm/cool vibe precisely while keeping the colours clean and mud-free.",
     zh_desc:"模擬光學濾鏡的色溫調整。控制畫面的冷暖氛圍，並維持色彩的純淨度。" },
-  { icon:"◇", label:"TINT",        zh:"色調",     tag:"v2.1 NEW",      tagC:C.cyan,   accentL:C.cyan,
+  { icon:"◇", label:"TINT",        zh:"色調",     tag:"2026.10 UPDATED", tagC:C.cyan,   accentL:C.cyan,
     en:"Optical-style magenta/green axis correction. Cancels the green/magenta shift common to fluorescent and LED sources.",
     zh_desc:"模擬光學色片的洋紅-綠軸校正。化解日光燈、LED 等混光現場常見的綠/洋紅偏移。" },
   { icon:"◑", label:"CONTRAST",    zh:"對比",     tag:null, accentL:C.purple,
@@ -106,15 +132,15 @@ const PARAMS = [
   { icon:"⊘", label:"CONTRAST PIVOT", zh:"對比軸心", tag:null, accentL:"#E8C77A",
     en:"Tonal center alignment tool. Anchors the contrast expansion point to preserve critical midtone details across the dynamic range.",
     zh_desc:"光度對比軸心設定。定義對比擴張的中心點，在拉開動態範圍時保留中階層次與細節。" },
-  { icon:"⊙", label:"VIBRANCE",    zh:"鮮豔度",   tag:"v2.2 NEW",      tagC:C.green,  accentL:C.green,
-    en:"Non-linear saturation control. Gain varies with the saturation of the source image — stronger lift in muted areas, easing off where already saturated. Suited to overall colour density without pushing saturated regions out of range.",
-    zh_desc:"非線性飽和控制。依原始畫面飽和程度給予不同增量——偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。" },
   { icon:"⊕", label:"SATURATION",  zh:"飽和度",   tag:null, accentL:C.green,
     en:"Linear saturation control. A uniform scale across the frame with luminance held constant. Suited to multi-camera matching and precise adjustment.",
     zh_desc:"線性飽和控制。全畫面等量增減，亮度保持恆定。適合多機位匹配與精準調整。" },
-  { icon:"☒", label:"SHADOWS / MIDTONES / HIGHLIGHTS", zh:"分區調光", tag:"v2.0 UPGRADED", tagC:C.orange, accentL:C.orange,
-    en:"Independent tonal controls. Isolates lighting regions to separate subjects from the background without complex masking.",
-    zh_desc:"影像分區調控，獨立區分影像亮、中灰與暗部，協助分離主體與背景光影，降低對二次遮罩的依賴。" },
+  { icon:"⊙", label:"VIBRANCE",    zh:"鮮豔度",   tag:"v2.2 NEW",      tagC:C.green,  accentL:C.green,
+    en:"Non-linear saturation control. Gain varies with the saturation of the source image — stronger lift in muted areas, easing off where already saturated. Suited to overall colour density without pushing saturated regions out of range.",
+    zh_desc:"非線性飽和控制。依原始畫面飽和程度給予不同增量——偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。" },
+  { icon:"☒", label:"HIGHLIGHTS / MIDTONES / SHADOWS", zh:"分區調光", tag:"2026.10 UPDATED", tagC:C.orange, accentL:C.orange,
+    en:"Independent tonal controls. Highlights, midtones and shadows are controlled separately through smooth crossover transitions, keeping the tonal response natural and preserving latitude when exposure is adjusted. Each zone has a Master control plus individual R / G / B controls for colour balance within the zone, reducing reliance on complex secondary masking.",
+    zh_desc:"影像分區調控。透過平滑的過渡區間獨立控制高光、中間調與暗部，在調整曝光時維持自然的階調響應與寬容度。每區皆有 Master 整體調整與 R／G／B 分色調整，降低對複雜二次遮罩的依賴。" },
 ];
 
 /* ── Primitives ─────────────────────────────────────────── */
@@ -292,7 +318,7 @@ export default function App() {
           <div style={{ margin:"28px 14px 0", borderTop:"1px solid #1e1e1e", paddingTop:20 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:"#9A9A9A",
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:10 }}>Version</div>
-            {["Pro Suite","+ Light Engine","+ FILMIC","October 2026"].map((t,i,arr) => (
+            {["POP v4.0.0","FILMIC v3.1.0","NANO v2.3.0","October 2026"].map((t,i,arr) => (
               <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:14, fontWeight:500,
                 color:i===arr.length-1?C.inline:"#CFCFCF", lineHeight:2 }}>{t}</div>
             ))}
@@ -334,23 +360,21 @@ export default function App() {
               </p>
               <p style={{ fontSize:15, color:C.textZh, lineHeight:1.85, maxWidth:600, margin:"0 auto",
                 fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
-                <strong style={{color:C.inline}}>SokobanFilmLab Omni Log Engine</strong> 不僅僅是一個 LUT，它是一組高精度的色彩轉換引擎，
-                採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎，
-                呈現自然平衡的光度色調層次，提供一個高度靈活的專業電影級畫布。
+                <strong style={{color:C.inline}}>SokobanFilmLab Omni Log Engine</strong> 不僅僅是一個 LUT，它是一組高精度的色彩轉換引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎，呈現自然平衡的光度色調層次，提供一個高度靈活的專業電影級畫布。
               </p>
             </div>
 
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:14 }}>
               {[
+                { name:"OMNI LOG ENGINE -POP-", badge:"Bubble / Balloon", c:C.pink,
+                  en:"A colour engine built around stronger colour expression and image depth. The engine reads the colour of each scene: saturated scenes gain wider colour separation, while muted scenes keep their original restraint and balance. A fit for music videos, commercials and narrative work of every kind.",
+                  zh:"以強化色彩表現與畫面層次為核心的色彩引擎。引擎讀取每個場景的色彩狀態：高彩度畫面進一步拉開色彩差異，低彩度畫面則維持原有的克制與平衡。適用於 MV、廣告及各類敘事影像。" },
                 { name:"OMNI LOG ENGINE -FILMIC-", badge:"Rich / Mellow", c:C.orange,
                   en:"A colour engine built to realise a filmic foundation, letting Log resolve into a full, dimensional image. Wider tonal transitions through the highlights and midtones, a fit for narrative work across formats.",
                   zh:"以實現電影 filmic 基底為目標的色彩引擎，使 Log 畫面風格有型落定。高光與中間調的過渡更寬裕，適用於各類型影片敘事。" },
-                { name:"OMNI LOG ENGINE -PRO SUITE-", badge:"Pro + Light", c:C.teal,
-                  en:<><strong style={{color:C.textHi}}>Includes BOTH Pro &amp; Light:</strong> The complete Offline/Online workflow arsenal. The Pro high-precision engine is engineered for maximum colour fidelity. Recommended for high-end workstations or tasks requiring stringent precision in image detail.</>,
-                  zh:"包含 Pro 與 Light 雙引擎：完整的 Offline / Online 工作流程工具庫。Pro 高精度引擎專為最大色彩保真度設計，推薦於高階工作站環境使用。" },
-                { name:"OMNI LOG ENGINE -LIGHT-", badge:"Real-time", c:C.teal,
-                  en:"The high-performance engine optimised for real-time playback. Ensures fluid operation even on mid-range hardware, massive timelines, or complex grading environments while fully preserving the core visual aesthetic.",
-                  zh:"高效能引擎，專為 real-time 運作設計。即使在中階硬體環境、大型專案或複雜場景下，依然保持流暢，同時確立核心色彩轉換。" },
+                { name:"OMNI LOG ENGINE -NANO-", badge:"Real-time", c:C.teal,
+                  en:"A colour engine built around real-time playback efficiency. A lean processing load with all four Looks and the full set of controls; playback stays fluid even on mid-range hardware, large timelines and complex grades.",
+                  zh:"以即時播放效率為核心的色彩引擎。運算輕巧，四款 Look 與全套參數一應俱全，即使在中階硬體、大型專案或複雜調光環境下依然流暢。" },
               ].map((v, i) => (
                 <div key={v.name} className="hcard" style={{ background:C.surf,
                   gridColumn: "1/-1",
@@ -405,9 +429,7 @@ export default function App() {
                 independent colour normalization, enabling additional software colour management will result in image distortion.
               </p>
               <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:20, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
-                本引擎專為非色彩管理 <strong style={{color:C.inline}}>unmanaged</strong> 工作流程設計。
-                請確保專案設定為 <strong style={{color:C.inline}}>DaVinci YRGB</strong>，並避免使用 RCM 或 ACES。
-                因 <strong style={{color:C.inline}}>Target Look</strong> 皆已內建獨立色彩還原處理，開啟其他色彩管理會導致畫面失真。
+                本引擎專為非色彩管理 <strong style={{color:C.inline}}>unmanaged</strong> 工作流程設計。請確保專案設定為 <strong style={{color:C.inline}}>DaVinci YRGB</strong>，並避免使用 RCM 或 ACES。因 <strong style={{color:C.inline}}>Target Look</strong> 皆已內建獨立色彩還原處理，開啟其他色彩管理會導致畫面失真。
               </p>
               <div style={{ borderTop:"1px solid #2a2a2a", paddingTop:6 }}>
                 <StepRow num="1" en={<>Click the <strong style={{color:C.inline}}>Project Settings Gear</strong> in the bottom right corner.</>} zh="點擊右下角的專案設定齒輪" />
@@ -426,8 +448,7 @@ export default function App() {
                 When you first apply the engine, <strong style={{color:C.textHi}}>your GPU may take 1–3 seconds to compile the shader.</strong>
               </p>
               <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:14, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
-                為了在使用本引擎的高精度運算時確保流暢的即時播放，強烈建議開啟<strong style={{color:C.inline}}>快取功能</strong>。
-                首次套用引擎時，顯卡 GPU 可能需要 <strong style={{color:C.textHi}}>1 到 3 秒進行著色器編譯</strong>。
+                為了在使用本引擎的高精度運算時確保流暢的即時播放，強烈建議開啟<strong style={{color:C.inline}}>快取功能</strong>。首次套用引擎時，顯卡 GPU 可能需要 <strong style={{color:C.textHi}}>1 到 3 秒進行著色器編譯</strong>。
               </p>
               <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:8 }}>
                 Opening a project that uses the engine requires recompiling the shader —
@@ -504,10 +525,33 @@ export default function App() {
 
             <SubLabel en="A. TARGET LOOK SELECTION" zh="目標風格選擇" big />
 
+            {/* v4 POP — newest series */}
+            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.pink[0],
+              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
+              POP SERIES · v4.0
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
+              {LOOKS_V4.map(l => (
+                <Card key={l.name} accentLeft={l.accentLeft} style={{ marginBottom:0 }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
+                    <div style={{ width:10, height:10, borderRadius:"50%", background:l.dot, flexShrink:0 }} />
+                    <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:700,
+                      color:C.textHi, textTransform:"uppercase", letterSpacing:"0.06em" }}>{l.name}</span>
+                    <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜{l.zh}</span>
+                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:l.tagC,
+                      border:`1px solid ${l.tagC}44`, background:`${l.tagC}11`,
+                      padding:"4px 12px", borderRadius:3, letterSpacing:"0.1em", whiteSpace:"nowrap", marginLeft:"auto" }}>{l.tag}</span>
+                  </div>
+                  <p style={{ fontSize:16, color:C.textMed, lineHeight:1.72, marginBottom:7 }}>{l.en}</p>
+                  <p style={{ fontSize:14, color:C.textZh, lineHeight:1.8, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{l.zh_desc}</p>
+                </Card>
+              ))}
+            </div>
+
             {/* v3 FILMIC — hero set */}
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.orange[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
-              FILMIC SERIES · v3.0
+              FILMIC SERIES · v3.1
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
               {LOOKS_V3.map(l => (
@@ -527,10 +571,10 @@ export default function App() {
               ))}
             </div>
 
-            {/* v2.2 — included Look library */}
+            {/* v2.3 NANO — Look series */}
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.teal[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
-              LOOK LIBRARY · v2.2
+              NANO SERIES · v2.3
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:36 }}>
               {LOOKS_V2.map(l => (
@@ -618,8 +662,8 @@ export default function App() {
                 en:<>Position the <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.inline}}>DCTL</strong> from the <strong style={{color:C.inline}}>Open FX</strong> library to serve as your primary normalization stage, ensuring it processes pure, original Log data.</>,
                 zh:<>將 <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> <strong style={{color:C.inline}}>DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.inline}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
               { num:"02", title:"PRIMARY BALANCING",    zh_title:"基礎色彩校正平衡",   color:C.green,
-                en:<>Prioritise using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Tint, Contrast, Vibrance, Saturation,</strong> and <strong style={{color:C.green}}>Shadows / Midtones / Highlights</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
-                zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、色調、對比、鮮豔度、飽和度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
+                en:<>Prioritise using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Tint, Contrast, Saturation, Vibrance,</strong> and <strong style={{color:C.green}}>Highlights / Midtones / Shadows</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
+                zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、色調、對比、飽和度、鮮豔度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
               { num:"03", title:"FLEXIBLE NODE PIPELINE", zh_title:"靈活的 NODE 創意結構", color:C.cyan,
                 en:<>The engine integrates seamlessly into your node tree. You can apply simple <strong style={{color:C.cyan}}>Power Windows</strong> in nodes prior to the engine to adjust uneven raw Log lighting. After the engine, the high-precision normalised image provides a clean foundation for advanced secondary grading, such as <strong style={{color:C.cyan}}>Color Slice</strong> or pulling <strong style={{color:C.cyan}}>precise keys and mattes</strong>.</>,
                 zh:<>引擎能無縫融入節點結構。可以先在引擎前方的節點，加入區域遮罩 <strong style={{color:C.cyan}}>Power Window</strong> 預先調整原始 Log 畫面的光影分布；轉換後的高精度畫面，將為後續的<strong style={{color:C.cyan}}>色彩分割 Color Slice</strong> 或精確的<strong style={{color:C.cyan}}>選色去背 Key / Matte</strong> 提供最乾淨的次級調光基底。</> },
