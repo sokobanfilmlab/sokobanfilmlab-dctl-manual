@@ -39,25 +39,25 @@ const G = {
 };
 
 const NAV = [
-  { id:"intro", label:"Overview",  zh:"總覽" },
-  { id:"part1", label:"Part 1",    zh:"Technical Setup" },
-  { id:"part2", label:"Part 2",    zh:"Installation" },
-  { id:"part3", label:"Part 3",    zh:"Parameters" },
-  { id:"part4", label:"Part 4",    zh:"Workflow" },
+  { id:"intro", tag:"",       en:"Overview",        zh:"總覽" },
+  { id:"part1", tag:"PART 1", en:"Technical Setup", zh:"技術設定與需求" },
+  { id:"part2", tag:"PART 2", en:"Installation",    zh:"安裝指南" },
+  { id:"part3", tag:"PART 3", en:"Parameters",      zh:"介面工具說明" },
+  { id:"part4", tag:"PART 4", en:"Workflow",        zh:"建議調色工作流程" },
 ];
 
 const LOOKS_V4 = [
   { name:"Bubble", zh:"澄亮", dot:G.pink[0], accentLeft:G.pink[0], tag:"v4.0 POP", tagC:G.pink[0],
-    en:"POP foundation with clarity. Gentle contrast, a soft highlight rolloff, and cleanly separated colours; the image feels light and clean.",
+    en:"POP foundation with clarity. Gentle contrast, a soft highlight rolloff and cleanly separated colours; the image feels light and clean.",
     zh_desc:"明亮清透的 POP 基底。對比溫和柔美、色彩輕盈。" },
   { name:"Balloon", zh:"盈潤", dot:G.pink[1], accentLeft:G.pink[1], tag:"v4.0 POP", tagC:G.pink[1],
-    en:"POP foundation with volume. Fuller contrast, open highlights, and dense colour; the image feels soft yet dimensional.",
+    en:"POP foundation with volume. Fuller contrast, open highlights and dense colour; the image feels soft yet dimensional.",
     zh_desc:"鮮明有型的 POP 基底。對比厚而舒展、色彩澎潤。" },
 ];
 
 const LOOKS_V3 = [
   { name:"Rich",  zh:"豐實", dot:G.orange[0], accentLeft:G.orange[0], tag:"v3.1 FILMIC", tagC:G.orange[0],
-    en:"Filmic foundation with weight. Deep shadows, solid midtones, and a rounded highlight rolloff; the image sits grounded and full.",
+    en:"Filmic foundation with weight. Deep shadows, solid midtones and a rounded highlight rolloff; the image sits grounded and full.",
     zh_desc:"帶有重量的 filmic 基底。深厚的暗部、扎實的中間調、圓潤的高光滾降，讓畫面沉穩飽滿。" },
   { name:"Mellow", zh:"溫醇", dot:G.orange[1], accentLeft:G.orange[1], tag:"v3.1 FILMIC", tagC:G.orange[1],
     en:"Filmic foundation with warmth. Soft, buttery dimensional contrast and reined-in highlights; the image feels organic and natural.",
@@ -69,10 +69,10 @@ const LOOKS_V2 = [
     en:"Designed for extreme high-contrast lighting scenarios, drawing on the sensor's maximum dynamic range. While preserving shadow details, it ensures extreme highlights exhibit a soft, smooth rolloff.",
     zh_desc:"專為極端光比場景設計，最大化感光元件的動態範圍。在保留暗部細節的同時，確保極高光區域呈現柔和的過渡滾降。" },
   { name:"BALANCE",      zh:"平衡",        dot:G.teal[1], accentLeft:G.teal[1],
-    en:'Delivers uniform colour reproduction and a balanced contrast curve. When a project prioritises "realism," this mode provides the most neutral starting point for your grade.',
+    en:'Delivers uniform colour reproduction and a balanced contrast curve. When a project prioritises "realism", this mode provides the most neutral starting point for your grade.',
     zh_desc:"提供均勻的色彩還原與反差曲線。當專案首重「真實感」時，此模式能提供最中性的調色起點。" },
   { name:"STANDARD",     zh:"標準",        dot:G.teal[2], accentLeft:G.teal[2],
-    en:"Universally adaptable to Log footage from almost any camera system. Simulates a standard filmic S-curve, instantly building volume, depth, and rich midtone details within the image.",
+    en:"Universally adaptable to Log footage from almost any camera system. Simulates a standard filmic S-curve, instantly building volume, depth and rich midtone details within the image.",
     zh_desc:"幾乎能適應所有攝影機型拍出的 Log 畫面。模擬標準的底片感 S 曲線，為畫面建立立體感與深度，豐富的中階層次。" },
   { name:"HIGH CONTRAST", zh:"高反差",     dot:G.teal[3], accentLeft:G.teal[3],
     en:"Delivers intense yet controlled visual impact. Further pushes down the black levels for deep, rich shadows while significantly expanding highlight separation — colour harmony maintained throughout.",
@@ -130,7 +130,7 @@ const PARAMS = [
     en:"Log-native power curve for smooth depth control.",
     zh_desc:"Log 原生冪函數曲線，提供平滑的影像深度調整。" },
   { icon:"⊘", label:"CONTRAST PIVOT", zh:"對比軸心", tag:null, accentL:"#E8C77A",
-    en:"Tonal center alignment tool. Anchors the contrast expansion point to preserve critical midtone details across the dynamic range.",
+    en:"Tonal centre alignment tool. Anchors the contrast expansion point to preserve critical midtone details across the dynamic range.",
     zh_desc:"光度對比軸心設定。定義對比擴張的中心點，在拉開動態範圍時保留中階層次與細節。" },
   { icon:"⊕", label:"SATURATION",  zh:"飽和度",   tag:null, accentL:C.green,
     en:"Linear saturation control. A uniform scale across the frame with luminance held constant. Suited to multi-camera matching and precise adjustment.",
@@ -287,9 +287,13 @@ export default function App() {
           borderBottom:"1px solid #2a2a2a", zIndex:99, padding:12 }}>
           {NAV.map(n => (
             <button key={n.id} className={`nbtn${active===n.id?" act":""}`} onClick={()=>go(n.id)}>
-              <span style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500,
-                color:active===n.id?C.orange:C.textMed, minWidth:60 }}>{n.label}</span>
-              <span style={{ fontSize:14, color:active===n.id?C.textHi:"#BDBDBD" }}>{n.zh}</span>
+              <div style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
+                {n.tag && <div style={{ fontSize:11, fontWeight:500, color:"#8A8A8A",
+                  letterSpacing:"0.14em", marginBottom:3 }}>{n.tag}</div>}
+                <div style={{ fontSize:15, fontWeight:700,
+                  color:active===n.id?C.orange:C.textMed }}>{n.en}</div>
+                <div style={{ fontSize:14, color:active===n.id?C.textHi:"#BDBDBD", marginTop:2 }}>{n.zh}</div>
+              </div>
             </button>
           ))}
         </div>
@@ -301,28 +305,21 @@ export default function App() {
         <aside className="sbar" style={{ width:220, flexShrink:0, position:"sticky", top:60,
           height:"calc(100vh - 60px)", overflowY:"auto", padding:"28px 12px",
           borderRight:"1px solid #1e1e1e" }}>
-          <div style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:"#9A9A9A",
+          <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:12, fontWeight:500, color:"#9A9A9A",
             letterSpacing:"0.16em", textTransform:"uppercase", padding:"0 14px 14px" }}>Navigation</div>
           {NAV.map(n => (
             <button key={n.id} className={`nbtn${active===n.id?" act":""}`} onClick={()=>go(n.id)}>
-              <div style={{ width:2, height:30, borderRadius:2,
+              <div style={{ width:2, alignSelf:"stretch", minHeight:30, borderRadius:2,
                 background:active===n.id?C.orange:"transparent", flexShrink:0, transition:"background 0.2s" }} />
-              <div>
-                <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15,
-                  color:active===n.id?C.orange:C.textMed, fontWeight:500 }}>{n.label}</div>
-                <div style={{ fontSize:14, color:active===n.id?C.textHi:"#BDBDBD", marginTop:2,
-                  fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>{n.zh}</div>
+              <div style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
+                {n.tag && <div style={{ fontSize:11, fontWeight:500, color:"#8A8A8A",
+                  letterSpacing:"0.14em", marginBottom:3 }}>{n.tag}</div>}
+                <div style={{ fontSize:15, fontWeight:700,
+                  color:active===n.id?C.orange:C.textMed }}>{n.en}</div>
+                <div style={{ fontSize:14, color:active===n.id?C.textHi:"#BDBDBD", marginTop:2 }}>{n.zh}</div>
               </div>
             </button>
           ))}
-          <div style={{ margin:"28px 14px 0", borderTop:"1px solid #1e1e1e", paddingTop:20 }}>
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:12, color:"#9A9A9A",
-              letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:10 }}>Version</div>
-            {["POP v4.0.0","FILMIC v3.1.0","NANO v2.3.0","October 2026"].map((t,i,arr) => (
-              <div key={t} style={{ fontFamily:"'DM Mono',monospace", fontSize:14, fontWeight:500,
-                color:i===arr.length-1?C.inline:"#CFCFCF", lineHeight:2 }}>{t}</div>
-            ))}
-          </div>
         </aside>
 
         {/* MAIN CONTENT */}
@@ -336,7 +333,7 @@ export default function App() {
                 letterSpacing:"0.22em", textTransform:"uppercase", marginBottom:20,
                 display:"flex", alignItems:"center", justifyContent:"center", gap:10 }}>
                 <span style={{ display:"inline-block", width:24, height:1, background:C.orange }} />
-                Professional Log Normalization for Creative Workflows
+                Professional Log Normalisation for Creative Workflows
                 <span style={{ display:"inline-block", width:24, height:1, background:C.orange }} />
               </div>
               <h1 style={{ fontFamily:"'Rubik',sans-serif",
@@ -351,7 +348,7 @@ export default function App() {
               </div>
               <p style={{ fontSize:17, color:C.textMed, lineHeight:1.75, maxWidth:640, margin:"0 auto 12px" }}>
                 Beyond being a mere LUT, the <strong style={{color:C.inline}}>SokobanFilmLab Omni Log Engine</strong> serves as a
-                high-precision transformation tool utilising advanced floating-point math.
+                high-precision transformation tool utilising advanced floating-point maths.
               </p>
               <p style={{ fontSize:17, color:C.textMed, lineHeight:1.75, maxWidth:640, margin:"0 auto 12px" }}>
                 It ensures your sensor's dynamic range remains intact, creating a solid core for colour grading
@@ -359,7 +356,7 @@ export default function App() {
                 the freedom to bring your creative inspirations to life.
               </p>
               <p style={{ fontSize:15, color:C.textZh, lineHeight:1.85, maxWidth:600, margin:"0 auto",
-                fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
+                fontFamily:"'Rubik','Noto Sans TC',sans-serif", wordBreak:"keep-all", overflowWrap:"anywhere" }}>
                 <strong style={{color:C.inline}}>SokobanFilmLab Omni Log Engine</strong> 不僅僅是一個 LUT，它是一組高精度的色彩轉換引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎，呈現自然平衡的光度色調層次，提供一個高度靈活的專業電影級畫布。
               </p>
             </div>
@@ -400,7 +397,7 @@ export default function App() {
           {/* ══ PART 1 ══ */}
           <section id="part1">
             <PartTag>PART 1</PartTag>
-            <SectionHeading en="Technical Setup & Requirement" zh="技術設定與需求" />
+            <SectionHeading en="Technical Setup & Requirements" zh="技術設定與需求" />
 
             {/* Warning */}
             <div className="hcard" style={{ background:C.surf, border:"1px solid #3a2200",
@@ -412,7 +409,7 @@ export default function App() {
                   color:C.pink, textTransform:"uppercase", letterSpacing:"0.06em", marginBottom:8 }}>
                   DaVinci Resolve Studio Required</div>
                 <p style={{ fontSize:16, color:C.textMed, lineHeight:1.7, marginBottom:6 }}>
-                  This tool utilises DCTL technology, which is exclusive to the Studio (Paid) version of DaVinci Resolve on Windows, macOS, and iPadOS.</p>
+                  This tool utilises DCTL technology, which is exclusive to the Studio (Paid) version of DaVinci Resolve on Windows, macOS and iPadOS.</p>
                 <p style={{ fontSize:14, color:C.textZh, lineHeight:1.75, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
                   本工具採 DCTL 技術開發，僅支援 Windows、macOS 及 iPadOS 上的 DaVinci Resolve Studio (付費版)。</p>
               </div>
@@ -426,7 +423,7 @@ export default function App() {
                 Please ensure your project is set to <strong style={{color:C.inline}}>DaVinci YRGB</strong> and avoid
                 using DaVinci YRGB Color Managed (RCM) or ACES.<br/>
                 Since each <strong style={{color:C.inline}}>Target Look</strong> within the DCTL already incorporates
-                independent colour normalization, enabling additional software colour management will result in image distortion.
+                independent colour normalisation, enabling additional software colour management will result in image distortion.
               </p>
               <p style={{ fontSize:14, color:C.textZh, lineHeight:1.85, marginBottom:20, fontFamily:"'Rubik','Noto Sans TC',sans-serif" }}>
                 本引擎專為非色彩管理 <strong style={{color:C.inline}}>unmanaged</strong> 工作流程設計。請確保專案設定為 <strong style={{color:C.inline}}>DaVinci YRGB</strong>，並避免使用 RCM 或 ACES。因 <strong style={{color:C.inline}}>Target Look</strong> 皆已內建獨立色彩還原處理，開啟其他色彩管理會導致畫面失真。
@@ -443,7 +440,7 @@ export default function App() {
             <Card>
               <SubLabel en="PERFORMANCE: CACHE & LOADING" zh="效能最佳化：快取載入" />
               <p style={{ fontSize:16, color:C.textMed, lineHeight:1.75, marginBottom:8 }}>
-                To ensure buttery-smooth real-time playback while utilising the ultra-high-precision math of OmniLogEngine,
+                To ensure buttery-smooth real-time playback while utilising the ultra-high-precision maths of OmniLogEngine,
                 it is highly recommended to enable <strong style={{color:C.inline}}>DaVinci Resolve's caching system</strong>.
                 When you first apply the engine, <strong style={{color:C.textHi}}>your GPU may take 1–3 seconds to compile the shader.</strong>
               </p>
@@ -493,9 +490,9 @@ export default function App() {
                 ]},
               { platform:"iPAD OS", icon:"📱", path:null,
                 steps:[
-                  { en:<>Open the <strong style={{color:C.inline}}>Files</strong> App.</>, zh:<>開啟「<strong style={{color:C.inline}}>檔案</strong>」App</> },
+                  { en:<>Open the <strong style={{color:C.inline}}>Files</strong> app.</>, zh:<>開啟「<strong style={{color:C.inline}}>檔案</strong>」App</> },
                   { en:<>Navigate to: <strong style={{color:C.cyan}}>On My iPad › DaVinci Resolve › LUT</strong></>, zh:<>前往：<strong style={{color:C.cyan}}>我的 iPad › DaVinci Resolve › LUT</strong></> },
-                  { en:<>Create folder <strong style={{color:C.inline}}>MyDCTL</strong> and paste the <strong style={{color:C.inline}}>.dctle</strong> files.</>, zh:<>建立 <strong style={{color:C.inline}}>MyDCTL</strong> 資料夾，並貼上 <strong style={{color:C.inline}}>.dctle</strong> 檔案</> },
+                  { en:<>Create the <strong style={{color:C.inline}}>MyDCTL</strong> folder and paste the <strong style={{color:C.inline}}>.dctle</strong> files.</>, zh:<>建立 <strong style={{color:C.inline}}>MyDCTL</strong> 資料夾，並貼上 <strong style={{color:C.inline}}>.dctle</strong> 檔案</> },
                 ]},
             ].map(item => (
               <Card key={item.platform} style={{ marginBottom:16 }}>
@@ -521,7 +518,7 @@ export default function App() {
           {/* ══ PART 3 ══ */}
           <section id="part3">
             <PartTag>PART 3</PartTag>
-            <SectionHeading en="Parameters Explanation" zh="介面工具說明" />
+            <SectionHeading en="Parameter Reference" zh="介面工具說明" />
 
             <SubLabel en="A. TARGET LOOK SELECTION" zh="目標風格選擇" big />
 
@@ -591,7 +588,7 @@ export default function App() {
               ))}
             </div>
 
-            <SubLabel en="B. NORMALIZATION PARAMETERS" zh="校正參數說明" big />
+            <SubLabel en="B. NORMALISATION PARAMETERS" zh="校正參數說明" big />
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
               {PARAMS.map(p => (
                 <Card key={p.label} accentLeft={p.accentL} style={{ marginBottom:0 }}>
@@ -659,10 +656,10 @@ export default function App() {
 
             {[
               { num:"01", title:"INITIAL PLACEMENT",    zh_title:"核心節點建置",       color:C.orange,
-                en:<>Position the <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.inline}}>DCTL</strong> from the <strong style={{color:C.inline}}>Open FX</strong> library to serve as your primary normalization stage, ensuring it processes pure, original Log data.</>,
+                en:<>Position the <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.inline}}>DCTL</strong> from the <strong style={{color:C.inline}}>Open FX</strong> library to serve as your primary normalisation stage, ensuring it processes pure, original Log data.</>,
                 zh:<>將 <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> <strong style={{color:C.inline}}>DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.inline}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
               { num:"02", title:"PRIMARY BALANCING",    zh_title:"基礎色彩校正平衡",   color:C.green,
-                en:<>Prioritise using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Tint, Contrast, Saturation, Vibrance,</strong> and <strong style={{color:C.green}}>Highlights / Midtones / Shadows</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
+                en:<>Prioritise using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Tint, Contrast, Saturation, Vibrance</strong> and <strong style={{color:C.green}}>Highlights / Midtones / Shadows</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
                 zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、色調、對比、飽和度、鮮豔度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
               { num:"03", title:"FLEXIBLE NODE PIPELINE", zh_title:"靈活的 NODE 創意結構", color:C.cyan,
                 en:<>The engine integrates seamlessly into your node tree. You can apply simple <strong style={{color:C.cyan}}>Power Windows</strong> in nodes prior to the engine to adjust uneven raw Log lighting. After the engine, the high-precision normalised image provides a clean foundation for advanced secondary grading, such as <strong style={{color:C.cyan}}>Color Slice</strong> or pulling <strong style={{color:C.cyan}}>precise keys and mattes</strong>.</>,

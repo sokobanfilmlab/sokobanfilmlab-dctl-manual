@@ -11,7 +11,7 @@ const PRODUCTS = [
     tag: 'DCTL · DaVinci Resolve Studio',
     tagColor: '#FF8200',
     version: 'v4.0',
-    desc: 'A high-precision Log normalisation engine utilising advanced floating-point math. It ensures your sensor\'s dynamic range remains intact, creating a solid core for cinematic colour grading.',
+    desc: 'A high-precision Log normalisation engine utilising advanced floating-point maths. It ensures your sensor\'s dynamic range remains intact, creating a solid core for cinematic colour grading.',
     zh: '高精度 Log 正規化引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎。',
     includes: ['POP', 'FILMIC', 'NANO'],
     platforms: ['Windows', 'macOS', 'iPadOS'],
@@ -77,7 +77,7 @@ export default function Home() {
             color: '#FF8200', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 20,
           }}>User Manuals</div>
           <p style={{ fontSize: 16, color: C.textMed, lineHeight: 1.75, maxWidth: 560 }}>
-            Select a product below to view its full user manual, installation guide, and parameter reference.
+            Select a product below to view its full user manual, installation guide and parameter reference.
           </p>
           <p style={{ fontSize: 14, color: C.textZh, lineHeight: 1.85, maxWidth: 520, marginTop: 6, fontFamily: "'Rubik','Noto Sans TC',sans-serif" }}>
             選擇下方產品，查看完整使用說明、安裝指南與參數說明。
