@@ -116,6 +116,11 @@ const UPDATE_LOG = [
         "三頻階調控制：暗部／中間調／高光獨立控制。"] },
 ];
 
+const BUY_LINKS = [
+  { en:"Taiwan",        zh:"台灣用戶", store:"Portaly", href:"https://portaly.cc/sokobanfilmlab" },
+  { en:"International", zh:"國際用戶", store:"Gumroad", href:"https://sokobanfilmlab.gumroad.com/l/omnilogengine" },
+];
+
 const PARAMS = [
   { icon:"●", label:"EXPOSURE",    zh:"曝光",     tag:"2026.10 UPDATED", tagC:C.orange, accentL:C.orange,
     en:'True photometric "Stops" control. Simulates a physical camera aperture to precisely adjust exposure and recover details without shifting contrast.',
@@ -275,6 +280,10 @@ export default function App() {
         .nbtn.act { background:#140f00; }
         .hcard { transition:border-color 0.2s; }
         .hcard:hover { border-color:#333 !important; }
+        .buy-link { transition:border-color 0.2s, transform 0.2s, background 0.2s; text-decoration:none; }
+        .buy-link:hover { transform:translateY(-3px); border-color:#FF8200 !important; background:#101010 !important; }
+        .buy-link .buy-arrow { transition:transform 0.2s, background 0.2s, color 0.2s; }
+        .buy-link:hover .buy-arrow { transform:translateX(5px); background:#00B2A9; color:#000 !important; }
         @media(max-width:860px){.sbar{display:none!important;}.mbb{display:flex!important;}}
         @media(min-width:861px){.mbb{display:none!important;}}
       `}</style>
@@ -344,10 +353,10 @@ export default function App() {
               <div style={{ fontFamily:"'Rubik',sans-serif",
                 fontSize:"clamp(14px,2vw,18px)", fontWeight:400, color:C.orange,
                 textTransform:"uppercase", letterSpacing:"0.3em", marginBottom:28 }}>
-                SokobanFilmLab
+                Sokoban Film Lab
               </div>
               <p style={{ fontSize:17, color:C.textMed, lineHeight:1.75, maxWidth:640, margin:"0 auto 12px" }}>
-                Beyond being a mere LUT, the <strong style={{color:C.inline}}>SokobanFilmLab Omni Log Engine</strong> serves as a
+                Beyond being a mere LUT, the <strong style={{color:C.inline}}>OMNI LOG ENGINE</strong> serves as a
                 high-precision transformation tool utilising advanced floating-point maths.
               </p>
               <p style={{ fontSize:17, color:C.textMed, lineHeight:1.75, maxWidth:640, margin:"0 auto 12px" }}>
@@ -357,7 +366,7 @@ export default function App() {
               </p>
               <p style={{ fontSize:15, color:C.textZh, lineHeight:1.85, maxWidth:600, margin:"0 auto",
                 fontFamily:"'Rubik','Noto Sans TC',sans-serif", wordBreak:"keep-all", overflowWrap:"anywhere" }}>
-                <strong style={{color:C.inline}}>SokobanFilmLab Omni Log Engine</strong> 不僅僅是一個 LUT，它是一組高精度的色彩轉換引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎，呈現自然平衡的光度色調層次，提供一個高度靈活的專業電影級畫布。
+                <strong style={{color:C.inline}}>OMNI LOG ENGINE</strong> 不僅僅是一個 LUT，它是一組高精度的色彩轉換引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎，呈現自然平衡的光度色調層次，提供一個高度靈活的專業電影級畫布。
               </p>
             </div>
 
@@ -656,8 +665,8 @@ export default function App() {
 
             {[
               { num:"01", title:"INITIAL PLACEMENT",    zh_title:"核心節點建置",       color:C.orange,
-                en:<>Position the <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.inline}}>DCTL</strong> from the <strong style={{color:C.inline}}>Open FX</strong> library to serve as your primary normalisation stage, ensuring it processes pure, original Log data.</>,
-                zh:<>將 <strong style={{color:C.textHi}}>SokobanFilmLab OmniLogEngine</strong> <strong style={{color:C.inline}}>DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.inline}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
+                en:<>Position the <strong style={{color:C.textHi}}>OMNI LOG ENGINE</strong> as the foundational core of your grading chain. Drag the <strong style={{color:C.inline}}>DCTL</strong> from the <strong style={{color:C.inline}}>Open FX</strong> library to serve as your primary normalisation stage, ensuring it processes pure, original Log data.</>,
+                zh:<>將 <strong style={{color:C.textHi}}>OMNI LOG ENGINE</strong> <strong style={{color:C.inline}}>DCTL</strong> 作為調色流程的核心基石。從 <strong style={{color:C.inline}}>Open FX</strong> 面板將其套用為主要色彩校正節點，確保引擎直接處理最純粹、原始的 Log 數據。</> },
               { num:"02", title:"PRIMARY BALANCING",    zh_title:"基礎色彩校正平衡",   color:C.green,
                 en:<>Prioritise using the engine's built-in controls — <strong style={{color:C.green}}>Exposure, Temperature, Tint, Contrast, Saturation, Vibrance</strong> and <strong style={{color:C.green}}>Highlights / Midtones / Shadows</strong> — to balance the exposure and colour of your shot before adding any subsequent nodes.</>,
                 zh:<>在進行後續調色前，優先使用引擎內建的控制工具：<strong style={{color:C.green}}>曝光、色溫、色調、對比、飽和度、鮮豔度、分區調光控制</strong>，進行畫面平衡與曝光校正。</> },
@@ -730,7 +739,7 @@ export default function App() {
                 style={{ position:"absolute", top:0, left:0, width:"100%", height:"100%", border:"none" }}
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
-                title="SokobanFilmLab Omni Log Engine Showcase"
+                title="OMNI LOG ENGINE Showcase"
               />
             </div>
           </section>
@@ -769,6 +778,35 @@ export default function App() {
                     </div>
                   ))}
                 </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* Get the Engine */}
+          <section style={{ marginBottom:56 }}>
+            <span style={{ display:"inline-block", border:"1px solid #2a2a2a", color:"#555",
+              fontSize:10, fontFamily:"'DM Mono',monospace", letterSpacing:"0.13em",
+              padding:"2px 8px", borderRadius:3, marginBottom:14 }}>GET THE ENGINE</span>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))", gap:14 }}>
+              {BUY_LINKS.map(b => (
+                <a key={b.store} href={b.href} target="_blank" rel="noopener noreferrer" className="buy-link"
+                  style={{ display:"flex", alignItems:"center", gap:16, background:C.surf,
+                    border:"1px solid #FF820044", borderLeft:"3px solid #FF8200",
+                    borderRadius:6, padding:"20px 24px" }}>
+                  <div style={{ flex:1, minWidth:0 }}>
+                    <div style={{ display:"flex", alignItems:"baseline", flexWrap:"wrap", gap:2, marginBottom:6 }}>
+                      <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:17, fontWeight:700,
+                        color:C.textHi, letterSpacing:"0.02em" }}>{b.en}</span>
+                      <span style={{ fontFamily:"'Rubik','Noto Sans TC',sans-serif", fontSize:14, color:C.textZh }}>｜{b.zh}</span>
+                    </div>
+                    <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:C.orange, letterSpacing:"0.1em" }}>{b.store}</div>
+                  </div>
+                  <div className="buy-arrow" aria-hidden="true" style={{
+                    width:44, height:44, borderRadius:"50%", border:"2px solid #00B2A9",
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    fontFamily:"'DM Mono',monospace", fontSize:20, fontWeight:500,
+                    color:"#00B2A9", flexShrink:0, lineHeight:1 }}>→</div>
+                </a>
               ))}
             </div>
           </section>

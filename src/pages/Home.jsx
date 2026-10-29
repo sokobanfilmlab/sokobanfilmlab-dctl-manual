@@ -32,6 +32,12 @@ const PRODUCTS = [
   // },
 ]
 
+// ── 購買入口 ─────────────────────────────────────────
+const BUY_LINKS = [
+  { en: 'Taiwan',        zh: '台灣用戶', store: 'Portaly', href: 'https://portaly.cc/sokobanfilmlab' },
+  { en: 'International', zh: '國際用戶', store: 'Gumroad', href: 'https://sokobanfilmlab.gumroad.com/l/omnilogengine' },
+]
+
 const C = {
   bg: '#000000', surf: '#0d0d0d', border: '#1e1e1e', border2: '#2a2a2a',
   textHi: '#FFFFFF', textMed: '#E8E8E8', textZh: '#DEDEDE', muted: '#DEDEDE',
@@ -49,6 +55,10 @@ export default function Home() {
         .product-card:hover { transform: translateY(-3px); border-color: var(--ac); background: #101010; }
         .product-card .go-arrow { transition: transform 0.2s, background 0.2s, color 0.2s; }
         .product-card:hover .go-arrow { transform: translateX(5px); background: #00B2A9; color: #000 !important; }
+        .buy-link { transition: border-color 0.2s, transform 0.2s, background 0.2s; text-decoration: none; }
+        .buy-link:hover { transform: translateY(-3px); border-color: #FF8200 !important; background: #101010 !important; }
+        .buy-link .buy-arrow { transition: transform 0.2s, background 0.2s, color 0.2s; }
+        .buy-link:hover .buy-arrow { transform: translateX(5px); background: #00B2A9; color: #000 !important; }
       `}</style>
 
       <Navbar />
@@ -159,6 +169,53 @@ export default function Home() {
               }}>→</div>
             </div>
           ))}
+        </div>
+
+        {/* Get the Engine */}
+        <div style={{ marginTop: 56 }}>
+          <span style={{
+            display: 'inline-block', border: '1px solid #2a2a2a', color: '#555',
+            fontSize: 10, fontFamily: "'DM Mono',monospace", letterSpacing: '0.13em',
+            padding: '2px 8px', borderRadius: 3, marginBottom: 14,
+          }}>GET THE ENGINE</span>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 14 }}>
+            {BUY_LINKS.map(b => (
+              <a
+                key={b.store}
+                href={b.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="buy-link"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 16,
+                  background: C.surf,
+                  border: '1px solid #FF820044',
+                  borderLeft: '3px solid #FF8200',
+                  borderRadius: 8, padding: '20px 24px',
+                }}
+              >
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: 2, marginBottom: 6 }}>
+                    <span style={{
+                      fontFamily: "'Rubik',sans-serif", fontSize: 17, fontWeight: 700,
+                      color: C.textHi, letterSpacing: '0.02em',
+                    }}>{b.en}</span>
+                    <span style={{ fontFamily: "'Rubik','Noto Sans TC',sans-serif", fontSize: 14, color: C.textZh }}>｜{b.zh}</span>
+                  </div>
+                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: '#FF8200', letterSpacing: '0.1em' }}>
+                    {b.store}
+                  </div>
+                </div>
+                <div className="buy-arrow" aria-hidden="true" style={{
+                  width: 44, height: 44, borderRadius: '50%',
+                  border: '2px solid #00B2A9',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: "'DM Mono',monospace", fontSize: 20, fontWeight: 500,
+                  color: '#00B2A9', flexShrink: 0, lineHeight: 1,
+                }}>→</div>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Footer */}
