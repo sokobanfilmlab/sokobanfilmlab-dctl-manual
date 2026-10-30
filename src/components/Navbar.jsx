@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 const PRODUCTS = [
   {
     path: '/omni-log-engine',
-    label: 'Omni Log Engine',
+    label: 'OMNI LOG ENGINE',
     tag: 'DCTL',
     color: '#F5A623',
   },
@@ -45,7 +45,7 @@ export default function Navbar({ manualLabel }) {
             fontFamily: "'Barlow Condensed', sans-serif",
             fontSize: 15, fontWeight: 700, color: '#FFFFFF',
             textTransform: 'uppercase', letterSpacing: '0.08em',
-          }}>SokobanFilmLab</div>
+          }}>Sokoban Film Lab</div>
           <div style={{
             fontFamily: "'DM Mono', monospace",
             fontSize: 10, color: '#DEDEDE', letterSpacing: '0.1em',
