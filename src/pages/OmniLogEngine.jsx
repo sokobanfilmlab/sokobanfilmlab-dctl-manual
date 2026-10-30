@@ -294,7 +294,7 @@ export default function App() {
       `}</style>
 
       {/* TOPBAR */}
-      <Navbar manualLabel="Omni Log Engine · 2026" />
+      <Navbar manualLabel="OMNI LOG ENGINE · 2026" />
 
       {mob && (
         <div style={{ position:"fixed", top:60, left:0, right:0, background:"#050505",
@@ -353,7 +353,7 @@ export default function App() {
               <h1 style={{ fontFamily:"'Rubik',sans-serif",
                 fontSize:"clamp(36px,7vw,68px)", fontWeight:900, color:C.textHi,
                 textTransform:"uppercase", letterSpacing:"0.02em", lineHeight:1.0, marginBottom:6 }}>
-                Omni Log Engine
+                OMNI LOG ENGINE
               </h1>
               <div style={{ fontFamily:"'Rubik',sans-serif",
                 fontSize:"clamp(14px,2vw,18px)", fontWeight:400, color:C.orange,
@@ -706,7 +706,7 @@ export default function App() {
                   null,
                   { label:"Power Window",   sub:"區域遮罩（optional）", hi:false },
                   null,
-                  { label:"Omni Log Engine",sub:"引擎核心",            hi:true  },
+                  { label:"OMNI LOG ENGINE",sub:"引擎核心",            hi:true  },
                   null,
                   { label:"Secondary Grade",sub:"次級調光",            hi:false },
                   null,

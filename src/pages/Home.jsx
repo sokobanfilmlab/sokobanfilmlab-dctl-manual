@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar.jsx'
 const PRODUCTS = [
   {
     path: '/omni-log-engine',
-    name: 'Omni Log Engine',
+    name: 'OMNI LOG ENGINE',
     nameColor: '#FF8200',
     accentLeft: '#FF8200',
     tag: 'DCTL · DaVinci Resolve Studio',
