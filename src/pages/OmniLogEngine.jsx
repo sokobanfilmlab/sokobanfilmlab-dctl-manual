@@ -244,6 +244,11 @@ export default function App() {
   const [mob, setMob] = useState(false);
 
   useEffect(() => {
+    document.title = "OMNI LOG ENGINE 使用手冊｜DaVinci Resolve DCTL 調光引擎";
+    document.querySelector('meta[name="description"]')?.setAttribute("content", "OMNI LOG ENGINE 使用手冊。DaVinci Resolve DCTL 調光引擎的安裝、參數說明與工作流程。涵蓋 POP、FILMIC、NANO 三組引擎的操作指引。");
+  }, []);
+
+  useEffect(() => {
     const fn = () => {
       const hit = NAV.map(n => {
         const el = document.getElementById(n.id);

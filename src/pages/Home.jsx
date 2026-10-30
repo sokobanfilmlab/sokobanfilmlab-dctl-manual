@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar.jsx'
 
@@ -45,6 +46,11 @@ const C = {
 
 export default function Home() {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    document.title = 'Sokoban Film Lab｜DaVinci Resolve DCTL 調光工具手冊'
+    document.querySelector('meta[name="description"]')?.setAttribute('content', 'Sokoban Film Lab 調光工具手冊站。DaVinci Resolve DCTL 調光引擎的安裝、參數說明與工作流程，目前收錄 OMNI LOG ENGINE。')
+  }, [])
 
   return (
     <div style={{ background: C.bg, minHeight: '100vh', color: C.textMed, fontFamily: "'Rubik','Noto Sans TC',sans-serif" }}>
