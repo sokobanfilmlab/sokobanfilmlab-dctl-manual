@@ -11,7 +11,7 @@ const PRODUCTS = [
     accentLeft: '#FF8200',
     tag: 'DCTL · DaVinci Resolve Studio',
     tagColor: '#FF8200',
-    version: 'v4.0',
+    version: 'v4.0.1',
     desc: 'A high-precision Log normalisation engine utilising advanced floating-point maths. It ensures your sensor\'s dynamic range remains intact, creating a solid core for cinematic colour grading.',
     zh: '高精度 Log 正規化引擎，採用浮點運算數學映射，確保攝影機動態範圍完整保留，建立堅實的調光核心基礎。',
     includes: ['POP', 'FILMIC', 'NANO'],
@@ -227,7 +227,7 @@ export default function Home() {
         {/* Footer */}
         <div style={{ borderTop: '1px solid #1e1e1e', marginTop: 56, paddingTop: 24 }}>
           <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: '#333' }}>
-            User Manual · October 2026
+            User Manual · November 2026
           </div>
         </div>
       </main>

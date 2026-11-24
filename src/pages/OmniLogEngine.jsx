@@ -47,19 +47,19 @@ const NAV = [
 ];
 
 const LOOKS_V4 = [
-  { name:"Bubble", zh:"澄亮", dot:G.pink[0], accentLeft:G.pink[0], tag:"v4.0 POP", tagC:G.pink[0],
+  { name:"Bubble", zh:"澄亮", dot:G.pink[0], accentLeft:G.pink[0], tag:"v4.0.1 POP", tagC:G.pink[0],
     en:"POP foundation with clarity. Gentle contrast, a soft highlight rolloff and cleanly separated colours; the image feels light and clean.",
     zh_desc:"明亮清透的 POP 基底。對比溫和柔美、色彩輕盈。" },
-  { name:"Balloon", zh:"盈潤", dot:G.pink[1], accentLeft:G.pink[1], tag:"v4.0 POP", tagC:G.pink[1],
+  { name:"Balloon", zh:"盈潤", dot:G.pink[1], accentLeft:G.pink[1], tag:"v4.0.1 POP", tagC:G.pink[1],
     en:"POP foundation with volume. Fuller contrast, open highlights and dense colour; the image feels soft yet dimensional.",
     zh_desc:"鮮明有型的 POP 基底。對比厚而舒展、色彩澎潤。" },
 ];
 
 const LOOKS_V3 = [
-  { name:"Rich",  zh:"豐實", dot:G.orange[0], accentLeft:G.orange[0], tag:"v3.1 FILMIC", tagC:G.orange[0],
+  { name:"Rich",  zh:"豐實", dot:G.orange[0], accentLeft:G.orange[0], tag:"v3.1.1 FILMIC", tagC:G.orange[0],
     en:"Filmic foundation with weight. Deep shadows, solid midtones and a rounded highlight rolloff; the image sits grounded and full.",
     zh_desc:"帶有重量的 filmic 基底。深厚的暗部、扎實的中間調、圓潤的高光滾降，讓畫面沉穩飽滿。" },
-  { name:"Mellow", zh:"溫醇", dot:G.orange[1], accentLeft:G.orange[1], tag:"v3.1 FILMIC", tagC:G.orange[1],
+  { name:"Mellow", zh:"溫醇", dot:G.orange[1], accentLeft:G.orange[1], tag:"v3.1.1 FILMIC", tagC:G.orange[1],
     en:"Filmic foundation with warmth. Soft, buttery dimensional contrast and reined-in highlights; the image feels organic and natural.",
     zh_desc:"溫暖的 filmic 基底。柔軟的立體反差、收斂的高光，畫面有機自然。" },
 ];
@@ -80,6 +80,9 @@ const LOOKS_V2 = [
 ];
 
 const UPDATE_LOG = [
+  { ver:"v4.0.1 / v3.1.1 / v2.3.1", c:G.pink[0], en_title:"Tonal Control Refined", zh_title:"三頻階調手感微調",
+    en:["3-Band Tonal Control: finer adjustments across highlights, midtones and shadows."],
+    zh:["三頻階調控制：高光／中間調／暗部的調整更細膩。"] },
   { ver:"v4.0", c:G.pink[0], en_title:"New POP Look Series", zh_title:"全新 POP Look 系列",
     en:["Bubble: light and graceful.", "Balloon: vivid and full-bodied.",
         "Ships with the same retuned parameter feel as v3.1 / v2.3."],
@@ -143,7 +146,7 @@ const PARAMS = [
   { icon:"⊙", label:"VIBRANCE",    zh:"鮮豔度",   tag:"v2.2 NEW",      tagC:C.green,  accentL:C.green,
     en:"Non-linear saturation control. Gain varies with the saturation of the source image — stronger lift in muted areas, easing off where already saturated. Suited to overall colour density without pushing saturated regions out of range.",
     zh_desc:"非線性飽和控制。依原始畫面飽和程度給予不同增量——偏淡處增幅較大，已飽和處收斂。適合整體推色，不易將高飽和區域推至出界。" },
-  { icon:"☒", label:"HIGHLIGHTS / MIDTONES / SHADOWS", zh:"分區調光", tag:"2026.10 UPDATED", tagC:C.orange, accentL:C.orange,
+  { icon:"☒", label:"HIGHLIGHTS / MIDTONES / SHADOWS", zh:"分區調光", tag:"2026.11 UPDATED", tagC:C.orange, accentL:C.orange,
     en:"Independent tonal controls. Highlights, midtones and shadows are controlled separately through smooth crossover transitions, keeping the tonal response natural and preserving latitude when exposure is adjusted. Each zone has a Master control plus individual R / G / B controls for colour balance within the zone, reducing reliance on complex secondary masking.",
     zh_desc:"影像分區調控。透過平滑的過渡區間獨立控制高光、中間調與暗部，在調整曝光時維持自然的階調響應與寬容度。每區皆有 Master 整體調整與 R／G／B 分色調整，降低對複雜二次遮罩的依賴。" },
 ];
@@ -539,7 +542,7 @@ export default function App() {
             {/* v4 POP — newest series */}
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.pink[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
-              POP SERIES · v4.0
+              POP SERIES · v4.0.1
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
               {LOOKS_V4.map(l => (
@@ -562,7 +565,7 @@ export default function App() {
             {/* v3 FILMIC — hero set */}
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.orange[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
-              FILMIC SERIES · v3.1
+              FILMIC SERIES · v3.1.1
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:28 }}>
               {LOOKS_V3.map(l => (
@@ -585,7 +588,7 @@ export default function App() {
             {/* v2.3 NANO — Look series */}
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:15, fontWeight:500, color:G.teal[0],
               letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:14 }}>
-              NANO SERIES · v2.3
+              NANO SERIES · v2.3.1
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom:36 }}>
               {LOOKS_V2.map(l => (
@@ -819,7 +822,7 @@ export default function App() {
           {/* Footer */}
           <footer style={{ borderTop:"1px solid #1e1e1e", paddingTop:28 }}>
             <div style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#333" }}>
-              User Manual · October 2026</div>
+              User Manual · November 2026</div>
           </footer>
 
         </main>
